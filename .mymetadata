@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="tslanpu"
+  id="myeclipse.1467189865103"
+  context-root="/tslanpu"
+  j2ee-spec="5.0"
+  archive="tslanpu.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
