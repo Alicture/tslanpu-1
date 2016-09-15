@@ -7,6 +7,8 @@ import java.util.List;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.MapHandler;
+import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import cn.itcast.jdbc.TxQueryRunner;
@@ -67,6 +69,11 @@ public class FoodDao {
 		List<Expression> experList = new ArrayList<Expression>();
 		experList.add(new Expression("department", "=", department));
 		return findByCriteria(experList, pageCode);
+	}
+	//查找企业名称
+	public List qynameData() throws SQLException{
+		String sql = "select qyname,id from food";
+		return qr.query(sql, new MapListHandler());
 	}
 	
 	//查询流通单位所有公司名称
