@@ -70,6 +70,11 @@ public class FoodDao {
 		experList.add(new Expression("department", "=", department));
 		return findByCriteria(experList, pageCode);
 	}
+	//按企业名称查找
+	public Food findbyqyname(String qyname) throws SQLException{
+		String sql="select * from food where qyname = ?";
+		return qr.query(sql, new BeanHandler(Food.class),qyname);
+	}
 	//查找企业名称
 	public List qynameData() throws SQLException{
 		String sql = "select qyname,id from food";

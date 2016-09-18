@@ -110,7 +110,7 @@ public class ProductionService {
 	}
 	public Production byqynameFull(String qyname) {
 		try {
-			System.out.println("已经ajax");
+			
 			return productionDao.byqynameFull(qyname);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

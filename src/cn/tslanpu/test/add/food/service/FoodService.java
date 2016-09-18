@@ -18,6 +18,15 @@ public class FoodService {
 			throw new RuntimeException();
 		}
 	}
+	public Food findbyqyname(String qyname) throws SQLException{
+		try
+		{
+			return foodDao.findbyqyname(qyname);
+		} catch (SQLException e)
+		{
+			throw new RuntimeException();
+		}
+	}
 	public List FindQyname(){
 		try
 		{

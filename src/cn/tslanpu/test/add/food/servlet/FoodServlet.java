@@ -26,7 +26,6 @@ public class FoodServlet extends BaseServlet {
 		List<Map<String, String>> list = new ArrayList<Map<String, String>>();
 		list=foodService.FindQyname();
 		request.setAttribute("qy", list);
-		System.out.println(list.toString());
 		request.getRequestDispatcher("/pages/exam/food/food.jsp").forward(request, response);
 		
 	}
