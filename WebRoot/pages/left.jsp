@@ -84,6 +84,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <ul class="treeview-menu">
                 <li class="active"><a href="<c:url value='/FoodServlet?method=findQYname'/>"><i class="fa fa-circle-o"></i>食品</a></li>             			
 			 			<li class="active"><a href="<c:url value='/pages/inspect/product.jsp'/>"><i class="fa fa-circle-o"></i>药品</a></li>
+			 			<li class="active"><a href="<c:url value='/pages/inspect/product.jsp'/>"><i class="fa fa-circle-o"></i>化妆品</a></li>
 			 			<li class="active"><a href="<c:url value='/pages/inspect/criculate.jsp'/>"><i class="fa fa-circle-o"></i>医疗机械</a></li>
 			 			<li class="active"><a href="<c:url value='/pages/inspect/food.jsp'/>"><i class="fa fa-circle-o"></i>保健食品</a></li>
                 </ul>

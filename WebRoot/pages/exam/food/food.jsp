@@ -41,14 +41,33 @@
 	href="${pageContext.request.contextPath }/dist/css/skins/_all-skins.min.css">
 <script
 	src="${pageContext.request.contextPath }/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-<link rel="stylesheet"
+<!--<link rel="stylesheet"
 	href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
 <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+  <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script> -->
+  <script src="<c:url value='/js/jedate/jquery-ui.js'/>"></script>
+     <link rel="stylesheet" type="text/css" href="<c:url value='/js/jedate/jquery-ui.css'/>" /> 
+     
+     <script src="<c:url value='/js/jedate/jquery-ui-timepicker-addon.js'/>"></script>
+     <script src="<c:url value='/js/jedate/jquery-ui-timepicker-zh-CN.js'/>"></script>
+     <script src="<c:url value='/js/jedate/jquery.ui.datepicker-zh-CN.js.js'/>"></script>
+     <link rel="stylesheet" type="text/css" href="<c:url value='/js/jedate/jquery-ui-timepicker-addon.css'/>" />
+
 <link rel="stylesheet" href="jqueryui/style.css">
 
 </head>
 <script>
+		$(function(){
+			$("#cjsj").datetimepicker();
+			$("#div1cytime").datetimepicker();
+			$("#div2gjtime").datetimepicker();
+			$("#div2yptime").datetimepicker();
+			$("#div3cytime").datetimepicker();	
+			$("#d7sytime").datetimepicker();
+					
+		});
+		
+		
 		
     	 function changeFunc(){
     			var selectBox = document.getElementById("table");
@@ -252,7 +271,7 @@
 								<p class=MsoNormal align=center style='text-align: center'>
 									<span lang=EN-US style='font-size: 22.0pt'><span
 										style="mso-spacerun: yes">                   </span></span><span
-										lang=EN-US style="margin-left: 300pt">No<input class="inputStyle"><span
+										lang=EN-US style="margin-left: 300pt">No<input id="d1num" class="inputStyle"><span
 											style="mso-spacerun: yes">               </span>
 										<o:p></o:p></span>
 								</p>
@@ -269,7 +288,7 @@
 								<p class=MsoNormal>
 									<span lang=EN-US
 										style='font-size: 15.0pt; font-family: 仿宋_GB2312;margin-left: -400pt'><span
-											style="mso-spacerun: yes">                       </span><input class="inputStyle"></span><span
+											style="mso-spacerun: yes">                       </span><input id="d1bcjdw" class="inputStyle"></span><span
 										style='font-size: 15.0pt; font-family: 仿宋_GB2312'>：<span
 										lang=EN-US><o:p></o:p></span></span>
 								</p>
@@ -282,45 +301,31 @@
 										style='font-size: 15.0pt; font-family: 仿宋_GB2312'>依据《中华人民共和国食品安全法》，国家对食品进行定期或者不定期的抽样检验。按我局部署，现对你单位依法进行国家食品安全（□监督抽检、□风险监测）。请你单位认真阅读本通知书背面《食品安全抽样检验企业须知》，并予以积极配合。<span
 										lang=EN-US><o:p></o:p></span></span>
 								</p>
-								<td>
+								<table border="0" style="margin-left: 0pt">
 								<tr>
-								<p class=MsoNormal style='text-indent: 30.0pt'>
-									<span style='font-size: 15.0pt; font-family: 仿宋_GB2312'>被抽食品：<input class="inputStyle"><span
-											lang=EN-US><span style="mso-spacerun: yes">                              
-											</span>
-											<o:p></o:p></span></span>
-								</p>
+								<td>
+								被抽食品：<input id="d1bcsp" class="inputStyle">
+								</td>
 								</tr>
 
-								<p class=MsoNormal style='text-indent: 30.0pt'>
-									<span style='font-size: 15.0pt; font-family: 仿宋_GB2312'>抽样单位：<input class="inputStyle"><span
-											lang=EN-US><span style="mso-spacerun: yes">                      
-											</span><span style="mso-spacerun: yes">        </span>
-											<o:p></o:p></span></span>
-								</p>
+								<tr>
+								<td>
+									抽样单位：<input id="d1cydw" class="inputStyle">
+								</td>
+								<tr >
+								<td>
+									抽样人员：<input id="d1cyry" class="inputStyle">
+								</td>
+								</tr>
 
-								<p class=MsoNormal style='text-indent: 30.0pt'>
-									<span style='font-size: 15.0pt; font-family: 仿宋_GB2312'>抽样人员：<input class="inputStyle"><span
-											lang=EN-US><span style="mso-spacerun: yes">                              
-											</span>
-											<o:p></o:p></span></span>
-								</p>
-
-								<p class=MsoNormal style='text-indent: 30.0pt;margin-right: 90pt'>
-									<span style='font-size: 15.0pt; font-family: 仿宋_GB2312;'>抽样日期：
-									<span
-											lang=EN-US>
-											<span style="mso-spacerun: yes"><input class="miniinputStyle"></span>
-											</span>年
-											<span lang=EN-US><span
-												style="mso-spacerun: yes"><input class="miniinputStyle"></span>
-												</span>月
-												<span
-											lang=EN-US><span style="mso-spacerun: yes"><input class="miniinputStyle"></span></span>日
-											<span lang=EN-US><o:p></o:p></span></span>
-											
-								</p>
-</td>
+								<tr>
+								<td>
+									抽样日期：
+								
+										<input type="text" id="div1cytime" readonly />	
+								</td>
+								</tr>
+</table>
 								<p class=MsoNormal style='text-indent: 30.0pt'>
 									<span lang=EN-US
 										style='font-size: 15.0pt; font-family: 仿宋_GB2312'><o:p>&nbsp;</o:p></span>
@@ -470,9 +475,9 @@ style="mso-spacerun:yes">                 </span><span
 style="mso-spacerun:yes">    </span>  <span style="mso-spacerun:yes">  </span></span><span
 lang=EN-US style='font-size:10.5pt;font-family:"Monotype Corsiva"'>N</span><u><span
 lang=EN-US style='font-size:7.5pt;font-family:"Monotype Corsiva"'>O</span></u><span
-lang=EN-US style='font-size:7.5pt;font-family:"Monotype Corsiva"'> </span><u><span
+lang=EN-US style='font-size:7.5pt;font-family:"Monotype Corsiva"'> </span><span
 lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'><span
-style="mso-spacerun:yes">                   </span><o:p></o:p></span></u></p>
+style="mso-spacerun:yes"><input id="d2no" type="text" class="miniinputStyle"></span><o:p></o:p></span></p>
 
 <div align=center>
 
@@ -846,11 +851,7 @@ style="mso-spacerun:yes">                   </span><o:p></o:p
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-  style='font-size:10.5pt'><span style="mso-spacerun:yes">    </span></span><span
-  style='font-size:10.5pt'>年<span lang=EN-US><span style="mso-spacerun:yes">   
-  </span></span>月<span lang=EN-US><span style="mso-spacerun:yes">    </span></span>日<span
-  lang=EN-US><o:p></o:p></span></span></p>
+  <input type="text" id="div2gjtime" readonly />
   </td>
   <td width=54 colspan=2 style='width:53.5pt;border-top:none;border-left:none;
   border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
@@ -1178,7 +1179,7 @@ style="mso-spacerun:yes">                   </span><o:p></o:p
   mso-border-alt:solid windowtext .5pt;padding:0cm 0cm 0cm 0cm;height:19.85pt;
   mso-height-rule:exactly'>
   <p class=MsoNormal align=center style='text-align:center;line-height:14.0pt;
-  mso-line-height-rule:exactly'><span lang=EN-US style='font-size:10.5pt'><o:p>&nbsp;</o:p></span></p>
+  mso-line-height-rule:exactly'><span lang=EN-US style='font-size:10.5pt'><o:p><input type="text" id="div2yptime" readonly></o:p></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:20;height:19.85pt;mso-height-rule:exactly'>
@@ -1583,12 +1584,7 @@ style="mso-spacerun:yes">                   </span><o:p></o:p
   <td width=127 style='width:126.85pt;border:solid windowtext 1.0pt;border-left:
   none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
   padding:0cm 5.4pt 0cm 5.4pt;height:38.55pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-  style='font-size:12.0pt;font-family:仿宋_GB2312'><span
-  style="mso-spacerun:yes">      </span></span><span style='font-size:12.0pt;
-  font-family:仿宋_GB2312'>年<span lang=EN-US><span style="mso-spacerun:yes">  
-  </span></span>月<span lang=EN-US><span style="mso-spacerun:yes">   </span></span>日<span
-  lang=EN-US><o:p></o:p></span></span></p>
+  <input type="text" id="div3cytime" readonly/>
   </td>
  </tr>
  <tr style='mso-yfti-irow:1;height:46.1pt'>
@@ -2102,7 +2098,7 @@ line-height:19.0pt;mso-line-height-rule:exactly'><span lang=EN-US
 style='font-size:12.0pt;font-family:仿宋_GB2312'>5.</span><span style='font-size:
 12.0pt;font-family:仿宋_GB2312'>企业收款信息（由被抽样单位自行填写完整的正确信息）<span lang=EN-US><o:p></o:p></span></span></p>
 
-<div align=center>
+<div>
 
 <table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
  style='margin-left:-21.6pt;border-collapse:collapse;border:none;mso-border-alt:
@@ -2214,38 +2210,17 @@ style="mso-spacerun:yes">   </span></span>日<span lang=EN-US><o:p></o:p></spa
 <p class=MsoNormal style='line-height:19.0pt;mso-line-height-rule:exactly'><span
 lang=EN-US style='mso-bidi-font-size:10.5pt;font-family:仿宋_GB2312'><o:p>&nbsp;</o:p></span></p>
 							</div>
-							<div id="div5" style="display: none"><p class=MsoNormal align=center style='text-align:center'><b style='mso-bidi-font-weight:
+							<div id="div5" style="display: none"><p class=MsoNormal><b style='mso-bidi-font-weight:
 normal'><span lang=EN-US style='font-size:18.0pt;mso-bidi-font-size:11.0pt'><o:p>&nbsp;</o:p></span></b></p>
 
-<p class=MsoNormal align=center style='text-align:center'><b style='mso-bidi-font-weight:
+<p class=MsoNormal><b style='mso-bidi-font-weight:
 normal'><span style='font-size:18.0pt;mso-bidi-font-size:11.0pt;font-family:
 宋体;mso-ascii-font-family:Calibri;mso-hansi-font-family:Calibri'>现场检查笔录</span></b><b
 style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:18.0pt;
 mso-bidi-font-size:11.0pt'><o:p></o:p></span></b></p>
 
-<p class=MsoNormal><span lang=EN-US><span
-style="mso-spacerun:yes">                                                        
-</span></span><span lang=EN-US style='font-size:10.0pt;mso-bidi-font-size:11.0pt'><span
-style="mso-spacerun:yes"> </span></span><span style='font-size:10.0pt;
-mso-bidi-font-size:11.0pt;font-family:宋体;mso-ascii-font-family:Calibri;
-mso-hansi-font-family:Calibri'>第</span><span lang=EN-US style='font-size:10.0pt;
-mso-bidi-font-size:11.0pt'><span style="mso-spacerun:yes">     </span></span><span
-style='font-size:10.0pt;mso-bidi-font-size:11.0pt;font-family:宋体;mso-ascii-font-family:
-Calibri;mso-hansi-font-family:Calibri'>页共</span><span lang=EN-US
-style='font-size:10.0pt;mso-bidi-font-size:11.0pt'><span
-style="mso-spacerun:yes">     </span></span><span style='font-size:10.0pt;
-mso-bidi-font-size:11.0pt;font-family:宋体;mso-ascii-font-family:Calibri;
-mso-hansi-font-family:Calibri'>页</span><span lang=EN-US style='font-size:10.0pt;
-mso-bidi-font-size:11.0pt'><o:p></o:p></span></p>
 
-<p class=MsoNormal><!--[if gte vml 1]><v:line id="Line_x0020_91" o:spid="_x0000_s1029"
- style='position:absolute;left:0;text-align:left;z-index:251658752' from="0,7.8pt"
- to="414pt,7.8pt" o:allowincell="f" strokeweight="1.5pt"/><![endif]--><![if !vml]><span
-style='mso-ignore:vglayout;position:relative;z-index:251658752'><span
-style='left:0px;position:absolute;left:-5px;top:-24px;width:421px;height:7px'><img
-width=421 height=7 src="5%E7%8E%B0%E5%9C%BA%E6%A3%80%E6%9F%A5%E7%AC%94%E5%BD%95.files/image001.gif"
-v:shapes="Line_x0020_91"></span></span><![endif]><span lang=EN-US><span
-style="mso-spacerun:yes">   </span></span></p>
+
 
 <p class=MsoNormal><span style='font-family:宋体;mso-ascii-font-family:Calibri;
 mso-hansi-font-family:Calibri'>被检查单位</span><span lang=EN-US>(</span><span
@@ -2295,14 +2270,7 @@ lang=EN-US><span style="mso-spacerun:yes">      </span></span></u><span
 style='font-family:宋体;mso-ascii-font-family:Calibri;mso-hansi-font-family:Calibri'>分</span><u><span
 lang=EN-US><o:p></o:p></span></u></p>
 
-<p class=MsoNormal><!--[if gte vml 1]><v:line id="Line_x0020_90" o:spid="_x0000_s1028"
- style='position:absolute;left:0;text-align:left;z-index:251657728' from="0,7.8pt"
- to="414pt,7.8pt" o:allowincell="f" strokeweight="1.5pt"/><![endif]--><![if !vml]><span
-style='mso-ignore:vglayout;position:relative;z-index:251657728'><span
-style='left:0px;position:absolute;left:-5px;top:-54px;width:421px;height:7px'><img
-width=421 height=7 src="5%E7%8E%B0%E5%9C%BA%E6%A3%80%E6%9F%A5%E7%AC%94%E5%BD%95.files/image002.gif"
-v:shapes="Line_x0020_90"></span></span><![endif]><span lang=EN-US><span
-style="mso-spacerun:yes">  </span></span></p>
+
 
 <p class=MsoNormal><span lang=EN-US><span style="mso-spacerun:yes">     
 </span></span></p>
@@ -2337,61 +2305,14 @@ mso-hansi-font-family:Calibri'>现场检查，请予配合。根据《中华人�
 <p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0'><span
 style='font-family:宋体;mso-ascii-font-family:Calibri;mso-hansi-font-family:Calibri'>问：你是否申请检查人员回避？</span></p>
 
-<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0'><span
-style='font-family:宋体;mso-ascii-font-family:Calibri;mso-hansi-font-family:Calibri'>答：</span></p>
-
+<p >答：</p>
+<textarea style="resize:none;width:600px;height:100px;"></textarea>
 <p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
 
 <p class=MsoNormal><span lang=EN-US><span style="mso-spacerun:yes">    </span></span><span
 style='font-family:宋体;mso-ascii-font-family:Calibri;mso-hansi-font-family:Calibri'>现场检查记录：</span></p>
-
-<p class=MsoNormal><span lang=EN-US><span style="mso-spacerun:yes">    </span></span></p>
-
-<p class=MsoNormal><span lang=EN-US><span style="mso-spacerun:yes">  </span></span></p>
-
-<p class=MsoNormal><span lang=EN-US><span
-style="mso-spacerun:yes">                  </span><span
-style="mso-spacerun:yes">  </span></span></p>
-
-<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
-
-<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
-
-<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
-
-<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
-
-<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
-
-<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
-
-<p class=MsoNormal><span lang=EN-US><span style="mso-spacerun:yes">  </span></span></p>
-
-<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
-
-<p class=MsoNormal><span lang=EN-US><span style="mso-spacerun:yes"> </span></span></p>
-
-<p class=MsoNormal style='text-indent:262.5pt'><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
-
-<p class=MsoNormal style='text-indent:21.0pt'><!--[if gte vml 1]><v:line id="Line_x0020_88"
- o:spid="_x0000_s1026" style='position:absolute;left:0;text-align:left;
- z-index:251655680' from="0,0" to=".05pt,0" o:allowincell="f"/><![endif]--><![if !vml]><span
-style='mso-ignore:vglayout;position:relative;z-index:251655680'><span
-style='left:0px;position:absolute;left:-4px;top:-176px;width:5px;height:5px'><img
-width=5 height=5 src="5%E7%8E%B0%E5%9C%BA%E6%A3%80%E6%9F%A5%E7%AC%94%E5%BD%95.files/image003.gif"
-v:shapes="Line_x0020_88"></span></span><![endif]><span lang=EN-US><span
-style="mso-spacerun:yes"> </span></span></p>
-
-<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
-
-<p class=MsoNormal style='text-indent:21.0pt'><!--[if gte vml 1]><v:line id="Line_x0020_92"
- o:spid="_x0000_s1030" style='position:absolute;left:0;text-align:left;
- z-index:251659776' from="0,12.25pt" to="414pt,12.25pt" o:allowincell="f"
- strokeweight="1.5pt"/><![endif]--><![if !vml]><span style='mso-ignore:vglayout;
-position:relative;z-index:251659776'><span style='left:0px;position:absolute;
-left:-5px;top:-175px;width:421px;height:7px'><img width=421 height=7
-src="5%E7%8E%B0%E5%9C%BA%E6%A3%80%E6%9F%A5%E7%AC%94%E5%BD%95.files/image004.gif"
-v:shapes="Line_x0020_92"></span></span><![endif]><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+<textarea style="resize:none;width:600px;height:200px;">
+</textarea>
 
 <br style='mso-ignore:vglayout' clear=ALL>
 
@@ -2401,17 +2322,7 @@ Calibri;mso-hansi-font-family:Calibri'>注：本文书一式二联，第一联�
 style='font-size:10.0pt;mso-bidi-font-size:11.0pt;line-height:150%'> <span
 lang=EN-US><o:p></o:p></span></span></p>
 
-<p class=MsoNormal style='line-height:150%'><span style='font-family:宋体;
-mso-ascii-font-family:Calibri;mso-hansi-font-family:Calibri'>被检查人签字：</span><!--[if gte vml 1]><v:line
- id="Line_x0020_89" o:spid="_x0000_s1027" style='position:absolute;left:0;
- text-align:left;z-index:251656704;mso-position-horizontal-relative:text;
- mso-position-vertical-relative:text' from="0,0" to="414pt,0" o:allowincell="f"
- strokeweight="1.5pt"/><![endif]--><![if !vml]><span style='mso-ignore:vglayout;
-position:relative;z-index:251656704'><span style='left:0px;position:absolute;
-left:-5px;top:-207px;width:421px;height:7px'><img width=421 height=7
-src="5%E7%8E%B0%E5%9C%BA%E6%A3%80%E6%9F%A5%E7%AC%94%E5%BD%95.files/image005.gif"
-v:shapes="Line_x0020_89"></span></span><![endif]><span lang=EN-US><span
-style="mso-spacerun:yes">                             </span></span></p></div>
+</div>
 							<div id="div6" style="display: none"><p class=MsoNormal align=center style='text-align:center'><span
 style='font-size:22.0pt;font-family:方正小标宋_GBK'>食品安全抽样检验样品信息登记表<span lang=EN-US><o:p></o:p></span></span></p>
 
@@ -3169,24 +3080,7 @@ lang=EN-US><o:p></o:p></span></span></p>
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 0cm;height:34.0pt'>
-  <p class=MsoNormal align=center style='text-align:center'><u><span
-  lang=EN-US><span style="mso-spacerun:yes">          </span></span></u><span
-  style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
-  "Times New Roman"'>年</span> <u><span lang=EN-US><span
-  style="mso-spacerun:yes">     </span></span></u><span lang=EN-US><span
-  style="mso-spacerun:yes"> </span></span><span style='font-family:宋体;
-  mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>月</span>
-  <u><span lang=EN-US><span style="mso-spacerun:yes">     </span></span></u><span
-  lang=EN-US><span style="mso-spacerun:yes"> </span></span><span
-  style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
-  "Times New Roman"'>日</span> <u><span lang=EN-US><span
-  style="mso-spacerun:yes">     </span></span></u><span lang=EN-US><span
-  style="mso-spacerun:yes"> </span></span><span style='font-family:宋体;
-  mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>时</span>
-  <u><span lang=EN-US><span style="mso-spacerun:yes">     </span></span></u><span
-  lang=EN-US><span style="mso-spacerun:yes"> </span></span><span
-  style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
-  "Times New Roman"'>分</span><u><span lang=EN-US><o:p></o:p></span></u></p>
+  <input type="text" id="d7sytime" readonly/>
   </td>
  </tr>
  <tr style='mso-yfti-irow:3;height:34.0pt'>
@@ -5139,7 +5033,9 @@ lang=EN-US style='font-size:6.0pt;font-family:Tahoma;mso-fareast-font-family:
 </table>
 
 <p class=MsoNormal style='line-height:13.5pt'><span lang=EN-US
-style='font-size:9.0pt;font-family:Tahoma;color:#404040'><o:p>&nbsp;</o:p></span></p></div>
+style='font-size:9.0pt;font-family:Tahoma;color:#404040'><o:p>&nbsp;</o:p></span></p>
+</div>
+
 						</div>
 					</div>
 				</div>
