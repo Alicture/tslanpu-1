@@ -46,7 +46,7 @@ import cn.tslanpu.test.pager.PageBean;
 				Map<String, Object> map = new HashMap<String, Object>();
 						map.put("byqynamePro", byqynamePro);
 						JSON jsonData = JSONObject.fromObject(map);
-						System.out.println(jsonData);
+//						System.out.println(jsonData);
 						response.getWriter().print(jsonData);
 		}
 

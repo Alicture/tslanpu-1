@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import cn.itcast.commons.CommonUtils;
+import cn.tslanpu.test.add.Criculate.service.CriculateService;
 import cn.tslanpu.test.add.food.domain.Food;
 import cn.tslanpu.test.add.food.service.FoodService;
+import cn.tslanpu.test.add.production.service.ProductionService;
 import cn.tslanpu.test.admin.domain.Admin;
 import cn.tslanpu.test.utils.BaseServlet;
 import cn.tslanpu.test.utils.TokenProccessor;
@@ -25,6 +27,13 @@ public class FoodServlet extends BaseServlet {
 			throws ServletException, IOException, SQLException {
 		List<Map<String, String>> list = new ArrayList<Map<String, String>>();
 		list=foodService.FindQyname();
+		List<Map<String, String>> list1 = new ArrayList<Map<String, String>>();
+		list1=new CriculateService().findQyname();
+		List<Map<String, String>> list2 = new ArrayList<Map<String, String>>();
+		list2=new ProductionService().findQyname();
+		request.setAttribute("qy2", list2);
+		request.setAttribute("qy1", list1);
+//		System.out.println(list2);
 		request.setAttribute("qy", list);
 		request.getRequestDispatcher("/pages/exam/food/food.jsp").forward(request, response);
 		

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.ArrayHandler;
+import org.apache.commons.dbutils.handlers.ArrayListHandler;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.MapHandler;
@@ -77,7 +79,7 @@ public class FoodDao {
 	}
 	//查找企业名称
 	public List qynameData() throws SQLException{
-		String sql = "select qyname,id from food";
+		String sql = "select qyname from food";
 		return qr.query(sql, new MapListHandler());
 	}
 	

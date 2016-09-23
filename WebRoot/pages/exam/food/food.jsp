@@ -142,20 +142,26 @@
     		    var availableTags = [
     			<c:forEach var="item" items="${qy}">   
     			  "${item.qyname}",   
-    			</c:forEach> 
+    			</c:forEach> +","+
+    			<c:forEach var="item" items="${qy1}">   
+    			  "${item.qyname}",   
+    			</c:forEach> +","+
+    			<c:forEach var="item" items="${qy2}">   
+  			  "${item.qyname}",   
+  			</c:forEach> 
     		    ];
     		    $( "#dwname" ).autocomplete({
     		      source: availableTags,
     		      max:10
     		    });
     		  });
-    	  function onblur(){
+    	  function qyname(){
     		  var name = $("#dwname").val();
     		  if(name!=""){
     			  ajaxbyname(name);
     		  }
     	  }
-    	  function  ajaxbyname(name){
+    	  function ajaxbyname(name){
     		  $.ajax({
     			 	url:"http://localhost:8080/tslanpu/foodAjaxServlet",
     	  			data:{qyname:name},
@@ -163,6 +169,7 @@
     	  			type:"post",
     	  			dataType:"JSON",
     	  			success:function(jsonData){
+    	  				var qyname = jsonData.byqynameFood.qyname;//被抽检单位
     	  				var scaddress = jsonData.byqynameFood.scaddress;//生产地址
     	  				var qyphone = jsonData.byqynameFood.qyphone; //企业负责人手机号
     	  				var qydelegate = jsonData.byqynameFood.qydelegate;//企业负责人
@@ -173,6 +180,8 @@
     	  				$("#qydelegate").attr("value",qydelegate);
     	  				$("#scpermit").attr("value",scpermit);
     	  				$("#zzcode").attr("value",zzcode);
+    	  				$("#d1bcjdw").attr("value",qyname);
+    	  				
     	  			}
     		  });
     	  }
@@ -231,8 +240,7 @@
 									<tbody>
 										<tr>
 											<td><label for="dwname">1.被抽检单位</label></td>
-											<td><input id="dwname" type="text" style="width: 260px"
-												onblur="onblur()"></td>
+											<td><input id="dwname" type="text" style="width: 260px" onblur="qyname()"></td>
 											<td><b>2.抽检时间</b></td>
 											<td><input id="cjsj" type="text" style="width: 260px"
 												class="" name="cjsj" /></td>
@@ -293,15 +301,12 @@
 										lang=EN-US><o:p></o:p></span></span>
 								</p>
 
-								<p class=MsoNormal>
-									<span lang=EN-US
-										style='font-size: 15.0pt; font-family: 仿宋_GB2312'><span
-										style="mso-spacerun: yes">   </span><span
-										style="mso-spacerun: yes"> </span></span><span
-										style='font-size: 15.0pt; font-family: 仿宋_GB2312'>依据《中华人民共和国食品安全法》，国家对食品进行定期或者不定期的抽样检验。按我局部署，现对你单位依法进行国家食品安全（□监督抽检、□风险监测）。请你单位认真阅读本通知书背面《食品安全抽样检验企业须知》，并予以积极配合。<span
-										lang=EN-US><o:p></o:p></span></span>
+								<p align="left">
+									<span lang=EN-USstyle='font-size: 15.0pt; font-family: 仿宋_GB2312'>
+										依据《中华人民共和国食品安全法》，国家对食品进行定期或者不定期的抽样检验。按我局部署，现对你单位依法进行国家食品安全（
+										 <input type="radio" name="examtype" value="监督抽检">监督抽检<input type="radio" name="examtype" value="风险监测">风险监测）。请你单位认真阅读本通知书背面《食品安全抽样检验企业须知》，并予以积极配合。</span>
 								</p>
-								<table border="0" style="margin-left: 0pt">
+								<table border="0" align="center">
 								<tr>
 								<td>
 								被抽食品：<input id="d1bcsp" class="inputStyle">
@@ -319,10 +324,8 @@
 								</tr>
 
 								<tr>
-								<td>
-									抽样日期：
+								<td>抽样日期：<span><input type="text" class="inputStyle" id="div1cytime" readonly/>	</span>
 								
-										<input type="text" id="div1cytime" readonly />	
 								</td>
 								</tr>
 </table>
@@ -383,19 +386,19 @@
 								</p>
 
 								<p class=MsoNormal
-									style='text-indent: 24.0pt; mso-char-indent-count: 2.0'>
+									style='text-indent: 24.0pt; mso-char-indent-count: 2.0' align="left">
 									<span style='font-size: 12.0pt; font-family: 仿宋_GB2312'>本告知书一式三联。第一联被抽样单位留存；第二联
 										抽样单位留存；第三联组织抽样检验的食品药品监管部门（市场监管部门）留存<span lang=EN-US><o:p></o:p></span>
 									</span>
 								</p>
 
-								<p class=MsoNormal align=center style='text-align: center'>
+								<p class=MsoNormal align=center style='text-align: left'>
 									<span style='font-size: 22.0pt; font-family: 方正小标宋简体'>食品安全抽样检验被抽样单位须知<span
 										lang=EN-US><o:p></o:p></span></span>
 								</p>
 
 								<p class=MsoNormal
-									style='text-indent: 32.0pt; mso-char-indent-count: 2.0; mso-line-height-alt: 0pt'>
+									style='text-indent: 32.0pt; mso-char-indent-count: 2.0; mso-line-height-alt: 0pt' align="left">
 									<span lang=EN-US
 										style='font-size: 16.0pt; mso-fareast-font-family: 仿宋_GB2312'>1</span><span
 										style='font-size: 16.0pt; font-family: 仿宋_GB2312'>．对食品进行抽样检验是食品药品监管部门依法履行监管职责的一项重要措施，任何单位和个人不得妨碍抽检工作的正常进行。被抽样单位无正当理由，对抽样工作不配合或者拒绝抽样检验的，按拒检处理。<span
@@ -403,7 +406,7 @@
 								</p>
 
 								<p class=MsoNormal
-									style='text-indent: 32.0pt; mso-char-indent-count: 2.0; mso-line-height-alt: 0pt'>
+									style='text-indent: 32.0pt; mso-char-indent-count: 2.0; mso-line-height-alt: 0pt' align="left">
 									<span lang=EN-US
 										style='font-size: 16.0pt; mso-fareast-font-family: 仿宋_GB2312'>2</span><span
 										style='font-size: 16.0pt; font-family: 仿宋_GB2312'>．依据《中华人民共和国食品安全法》的有关规定，抽样检验的样品通过购买的方式获取<span
@@ -412,7 +415,7 @@
 								</p>
 
 								<p class=MsoNormal
-									style='text-indent: 32.0pt; mso-char-indent-count: 2.0; mso-line-height-alt: 0pt'>
+									style='text-indent: 32.0pt; mso-char-indent-count: 2.0; mso-line-height-alt: 0pt' align="left">
 									<span lang=EN-US
 										style='font-size: 16.0pt; mso-fareast-font-family: 仿宋_GB2312'>3</span><span
 										style='font-size: 16.0pt; font-family: 仿宋_GB2312'>．国家食品安全抽样检验事先不通知被抽样单位。抽样人员不得少于</span><span
@@ -424,7 +427,7 @@
 								</p>
 
 								<p class=MsoNormal
-									style='text-indent: 32.0pt; mso-char-indent-count: 2.0; mso-line-height-alt: 0pt'>
+									style='text-indent: 32.0pt; mso-char-indent-count: 2.0; mso-line-height-alt: 0pt' align="left">
 									<span lang=EN-US
 										style='font-size: 16.0pt; mso-fareast-font-family: 仿宋_GB2312'>4</span><span
 										style='font-size: 16.0pt; font-family: 仿宋_GB2312'>．抽取的样品应由抽样人员自行送达或寄送至承检机构。确需被抽样单位协助寄送的，抽样人员应明确告知样品的寄、送要求。被抽样单位应在规定的时限内正确寄送，寄送样品的费用由抽样单位支付。<span
@@ -432,7 +435,7 @@
 								</p>
 
 								<p class=MsoNormal
-									style='text-indent: 32.0pt; mso-char-indent-count: 2.0; mso-line-height-alt: 0pt'>
+									style='text-indent: 32.0pt; mso-char-indent-count: 2.0; mso-line-height-alt: 0pt' align="left">
 									<span lang=EN-US
 										style='font-size: 16.0pt; mso-fareast-font-family: 仿宋_GB2312'>5</span><span
 										style='font-size: 16.0pt; font-family: 仿宋_GB2312'>．被抽样单位应当协助抽样工作人员如实填写国家食品安全抽样检验抽样单。<span
@@ -440,7 +443,7 @@
 								</p>
 
 								<p class=MsoNormal
-									style='text-indent: 32.0pt; mso-char-indent-count: 2.0; mso-line-height-alt: 0pt'>
+									style='text-indent: 32.0pt; mso-char-indent-count: 2.0; mso-line-height-alt: 0pt' align="left">
 									<span lang=EN-US
 										style='font-size: 16.0pt; mso-fareast-font-family: 仿宋_GB2312'>6</span><span
 										style='font-size: 16.0pt; font-family: 仿宋_GB2312'>．被抽样单位、生产者对执行此次抽检任务的单位、个人及有关抽检工作的任何意见，请填写《国家食品安全抽样检验工作质量及工作纪律反馈单》，填写完毕后寄送至指定单位。反馈意见者应留下电话、传真、</span><span
@@ -451,7 +454,7 @@
 								</p>
 
 								<p class=MsoNormal
-									style='text-indent: 32.0pt; mso-char-indent-count: 2.0; mso-line-height-alt: 0pt'>
+									style='text-indent: 32.0pt; mso-char-indent-count: 2.0; mso-line-height-alt: 0pt' align="left">
 									<span lang=EN-US
 										style='font-size: 16.0pt; mso-fareast-font-family: 仿宋_GB2312'>7</span><span
 										style='font-size: 16.0pt; font-family: 仿宋_GB2312'>．凡在市场上抽取的或涉及委托加工的样品，生产者或委托加工方应自收到通知之日起</span><span
@@ -1426,99 +1429,99 @@ style="mso-spacerun:yes"><input id="d2no" type="text" class="miniinputStyle"></s
 style='font-size:18.0pt;font-family:方正小标宋简体'>填表说明<span lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
-line-height:16.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+line-height:16.0pt;mso-line-height-rule:exactly' align="left"><span lang=EN-US
 style='font-size:10.5pt;font-family:"Times New Roman"'>1</span><span
 style='font-size:10.5pt'>．本文书是抽样单位在执行抽样任务时所使用的文书。<span lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
-line-height:16.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+line-height:16.0pt;mso-line-height-rule:exactly' align="left"><span lang=EN-US
 style='font-size:10.5pt;font-family:"Times New Roman"'>2</span><span
 style='font-size:10.5pt'>．“抽样编号”为抽样单位内部对所采集样品的编号，按《国家食品安全抽样检验抽样单编号规则》编制填写，一个样品有唯一抽样编号。<span
 lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
-line-height:16.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+line-height:16.0pt;mso-line-height-rule:exactly' align="left"><span lang=EN-US
 style='font-size:10.5pt;font-family:"Times New Roman"'>3</span><span
 style='font-size:10.5pt'>．“<span lang=EN-US>No</span>”为抽样单印制的流水号。<span
 lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
-line-height:16.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+line-height:16.0pt;mso-line-height-rule:exactly' align="left"><span lang=EN-US
 style='font-size:10.5pt;font-family:"Times New Roman"'>4</span><span
 style='font-size:10.5pt'>．“任务来源”要求填写出具《国家食品安全抽样检验告知书》的食品药品监管部门的名称。<span
 lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
-line-height:16.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+line-height:16.0pt;mso-line-height-rule:exactly' align="left"><span lang=EN-US
 style='font-size:10.5pt;font-family:"Times New Roman"'>5</span><span
 style='font-size:10.5pt'>．“任务类别” 在“监督抽检、风险监测”中选择，仅含有风险监测项目的食品样品抽取时选择风险监测，其他选择监督抽检。<span
 lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
-line-height:16.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+line-height:16.0pt;mso-line-height-rule:exactly' align="left"><span lang=EN-US
 style='font-size:10.5pt;font-family:"Times New Roman"'>6</span><span
 style='font-size:10.5pt'>．“被抽样单位名称”按照工商行政部门核发的营业执照标示名称填写。<span lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
-line-height:16.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+line-height:16.0pt;mso-line-height-rule:exactly' align="left"><span lang=EN-US
 style='font-size:10.5pt;font-family:"Times New Roman"'>7</span><span
 style='font-size:10.5pt'>．“被抽样单位地址”按照省（区、市）、地区（市、州、盟）、县（市、区）、乡（镇）、具体地址的格式填写被抽样单位的实际地址，若在批发市场等流通环节抽样时，应记录被抽样单位摊位号。<span
 lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
-line-height:16.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+line-height:16.0pt;mso-line-height-rule:exactly' align="left"><span lang=EN-US
 style='font-size:10.5pt;font-family:"Times New Roman"'>8</span><span
 style='font-size:10.5pt'>．“区域类型”在“城镇、乡村、景点”中选择，其中：“城市”为县中心城区及县级市以上的城（市）区域范围，“乡镇”为城（市）区域以外范围，“景点”为旅游景点范围，选择“景点”时，应同时选择“城市”或“乡镇”。<span
 lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
-line-height:16.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+line-height:16.0pt;mso-line-height-rule:exactly' align="left"><span lang=EN-US
 style='font-size:10.5pt;font-family:"Times New Roman"'>9</span><span
 style='font-size:10.5pt'>．“年销售额”在生产加工环节抽样时填写。<span lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
-line-height:16.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+line-height:16.0pt;mso-line-height-rule:exactly' align="left"><span lang=EN-US
 style='font-size:10.5pt;font-family:"Times New Roman"'>10</span><span
 style='font-size:10.5pt'>．“抽样地点”：当单位类型为“生产”时，在“原辅料库、生产线、半成品库、成品库（□待检区、□已检区）”选择其一；当单位类型为“流通”时，在“农贸市场、菜市场、批发市场、商场、超市、小食杂店、网购、其他”中选择其一；当单位类型为“餐饮”时，在“餐馆、食堂、小吃店、快餐店、饮品店、集体用餐配送单位、中央厨房、其他”中选择其一，当选择“餐馆”时还要在“特大型餐馆、大型餐馆、中型餐馆、小型餐馆”中进行选择，当选择“食堂”时还要在“机关食堂、学校<span
 lang=EN-US>/</span>托幼食堂、企事业单位食堂、建筑工地食堂”进行选择。<span lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
-line-height:16.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+line-height:16.0pt;mso-line-height-rule:exactly' align="left"><span lang=EN-US
 style='font-size:10.5pt;font-family:"Times New Roman"'>11</span><span
 style='font-size:10.5pt'>．“样品来源、样品属性、样品类型”在相应的□中打“√”即可。<span lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
-line-height:16.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+line-height:16.0pt;mso-line-height-rule:exactly' align="left"><span lang=EN-US
 style='font-size:10.5pt;font-family:"Times New Roman"'>12</span><span
 style='font-size:10.5pt'>．“样品名称、规格型号、商标、生产许可证编号、样品批号、执行标准<span lang=EN-US>/</span>技术文件、保质期、质量等级、单价、标示生产者名称、标示生产者地址、生产者联系人、联系电话”，按实际样品包装标签或销售价签、菜单等标示的名称填写。对食用农产品、餐饮食品等非预包装食品，无明确标示内容的项目，填写“<span
 lang=EN-US>/</span>”，不得留空白。<span lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
-line-height:16.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+line-height:16.0pt;mso-line-height-rule:exactly' align="left"><span lang=EN-US
 style='font-size:10.5pt;font-family:"Times New Roman"'>13</span><span
 style='font-size:10.5pt'>．“生产<span lang=EN-US>/</span>加工<span lang=EN-US>/</span>购进日期”原则上：对预包装食品按包装标签上标示的生产日期填写，散装食品按进货单标示的生产日期填写，餐饮自制食品按实际加工日期填写，餐饮环节抽取的食用农产品等，按购进日期填写。<span
 lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
-line-height:16.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+line-height:16.0pt;mso-line-height-rule:exactly' align="left"><span lang=EN-US
 style='font-size:10.5pt;font-family:"Times New Roman"'>14</span><span
 style='font-size:10.5pt'>．“是否出口”在相应□内打“√”即可。此处所指出口，是指同批次产品既在国内销售，又有部分用于出口。同一批次产品全部用于出口的不予抽样。<span
 lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
-line-height:16.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+line-height:16.0pt;mso-line-height-rule:exactly' align="left"><span lang=EN-US
 style='font-size:10.5pt;font-family:"Times New Roman"'>15</span><span
 style='font-size:10.5pt'>．“抽样基数<span lang=EN-US>/</span>批量、抽样数量、备样数量”按照相应产品的抽样检验实施细则中要求的数量抽样并据实填写，数量的单位应与规格型号中的单位一致。<span
 lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
-line-height:16.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+line-height:16.0pt;mso-line-height-rule:exactly' align="left"><span lang=EN-US
 style='font-size:10.5pt;font-family:"Times New Roman"'>16</span><span
 style='font-size:10.5pt'>．“样品形态、包装分类、抽样时样品的储存条件、抽样方式、抽样样品包装”在相应□内打“√”即可。<span
 lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
-line-height:16.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+line-height:16.0pt;mso-line-height-rule:exactly' align="left"><span lang=EN-US
 style='font-size:10.5pt;font-family:"Times New Roman"'>17</span><span
 style='font-size:10.5pt'>．“寄送样品截止日期”，原则上被抽样品应在</span><span lang=EN-US
 style='font-size:10.5pt;font-family:"Times New Roman"'>5</span><span
@@ -1527,18 +1530,18 @@ lang=EN-US>/</span>”<span lang=EN-US>,</span>寄送样品的，需填写样品
 lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
-line-height:16.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+line-height:16.0pt;mso-line-height-rule:exactly' align="left"><span lang=EN-US
 style='font-size:10.5pt;font-family:"Times New Roman"'>18</span><span
 style='font-size:10.5pt'>．“抽样单位信息”按抽样参加人员所在单位的具体情况填写。<span lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
-line-height:16.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+line-height:16.0pt;mso-line-height-rule:exactly' align="left"v><span lang=EN-US
 style='font-size:10.5pt;font-family:"Times New Roman"'>19</span><span
 style='font-size:10.5pt'>．备注：填写其他需要说明或采集的信息，如“进口食品”、“热加工”（糕点）等，具体参照各类食品抽样检验实施细则填写。<span
 lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
-line-height:16.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+line-height:16.0pt;mso-line-height-rule:exactly' align="left"><span lang=EN-US
 style='font-size:10.5pt;font-family:"Times New Roman"'>20</span><span
 style='font-size:10.5pt'>．抽样人签名必须要两人以上，并加盖抽样单位公章；被抽样单位和生产者须有工作人员签字确认，并加盖被抽样单位公章或其他合法印章。对特殊情况可签字并加按指模确认。</span><span
 lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'><o:p></o:p></span></p>
@@ -1747,11 +1750,11 @@ mso-char-indent-count:.5;line-height:30.0pt;mso-line-height-rule:exactly'><span
 style='font-size:18.0pt;font-family:方正小标宋简体;mso-hansi-font-family:宋体'>食品安全抽样检验样品购置费用告知书<span
 lang=EN-US><o:p></o:p></span></span></p>
 
-<p class=MsoNormal style='line-height:20.0pt'><span lang=EN-US
+<p class=MsoNormal style='line-height:20.0pt' align="left"><span lang=EN-US
 style='font-size:16.0pt;font-family:仿宋_GB2312'><o:p>&nbsp;</o:p></span></p>
 
 <p class=MsoNormal style='margin-left:-44.95pt;mso-para-margin-left:-4.28gd;
-line-height:19.0pt;mso-line-height-rule:exactly'><u><span lang=EN-US
+line-height:19.0pt;mso-line-height-rule:exactly' align="left"><u><span lang=EN-US
 style='font-size:12.0pt;font-family:仿宋_GB2312'><span
 style="mso-spacerun:yes">                           </span></span></u><span
 style='font-size:12.0pt;font-family:仿宋_GB2312'>：<span lang=EN-US><o:p></o:p></span></span></p>
@@ -2222,7 +2225,7 @@ mso-bidi-font-size:11.0pt'><o:p></o:p></span></b></p>
 
 
 
-<p class=MsoNormal><span style='font-family:宋体;mso-ascii-font-family:Calibri;
+<p class=MsoNormal align="left"><span style='font-family:宋体;mso-ascii-font-family:Calibri;
 mso-hansi-font-family:Calibri'>被检查单位</span><span lang=EN-US>(</span><span
 style='font-family:宋体;mso-ascii-font-family:Calibri;mso-hansi-font-family:Calibri'>人</span><span
 lang=EN-US>)</span><span style='font-family:宋体;mso-ascii-font-family:Calibri;
@@ -2233,18 +2236,18 @@ style='font-family:宋体;mso-ascii-font-family:Calibri;mso-hansi-font-family:Ca
 Calibri'>：</span><u><span lang=EN-US><span
 style="mso-spacerun:yes">                           </span></span></u></p>
 
-<p class=MsoNormal><span style='font-family:宋体;mso-ascii-font-family:Calibri;
+<p class=MsoNormal align="left"><span style='font-family:宋体;mso-ascii-font-family:Calibri;
 mso-hansi-font-family:Calibri'>检查现场：</span> <u><span lang=EN-US><span
 style="mso-spacerun:yes">                                                                  </span><o:p></o:p></span></u></p>
 
-<p class=MsoNormal><span style='font-family:宋体;mso-ascii-font-family:Calibri;
+<p class=MsoNormal align="left"><span style='font-family:宋体;mso-ascii-font-family:Calibri;
 mso-hansi-font-family:Calibri'>法定代表人（负责人）：</span><span lang=EN-US>____________________________</span><span
 style='font-family:宋体;mso-ascii-font-family:Calibri;mso-hansi-font-family:Calibri'>联系方式：</span><u><span
 lang=EN-US><span style="mso-spacerun:yes">          </span><span
 style="mso-spacerun:yes">   </span><span style="mso-spacerun:yes">     </span></span></u><span
 lang=EN-US><span style="mso-spacerun:yes"> </span><u><o:p></o:p></u></span></p>
 
-<p class=MsoNormal><span style='font-family:宋体;mso-ascii-font-family:Calibri;
+<p class=MsoNormal align="left"><span style='font-family:宋体;mso-ascii-font-family:Calibri;
 mso-hansi-font-family:Calibri'>检查人：</span><u><span lang=EN-US><span
 style="mso-spacerun:yes">                      </span></span></u><span
 style='font-family:宋体;mso-ascii-font-family:Calibri;mso-hansi-font-family:Calibri'>记录人：</span><u><span
@@ -2252,7 +2255,7 @@ lang=EN-US><span style="mso-spacerun:yes">           </span></span></u
 style='font-family:宋体;mso-ascii-font-family:Calibri;mso-hansi-font-family:Calibri'>监督检查类别：</span><u><span
 lang=EN-US><span style="mso-spacerun:yes">              </span><o:p></o:p></span></u></p>
 
-<p class=MsoNormal><span style='font-family:宋体;mso-ascii-font-family:Calibri;
+<p class=MsoNormal align="left"><span style='font-family:宋体;mso-ascii-font-family:Calibri;
 mso-hansi-font-family:Calibri'>检查时间：</span><u><span lang=EN-US><span
 style="mso-spacerun:yes">           </span></span></u><span style='font-family:
 宋体;mso-ascii-font-family:Calibri;mso-hansi-font-family:Calibri'>年</span><u><span
@@ -2272,10 +2275,10 @@ lang=EN-US><o:p></o:p></span></u></p>
 
 
 
-<p class=MsoNormal><span lang=EN-US><span style="mso-spacerun:yes">     
+<p class=MsoNormal align="left"><span lang=EN-US><span style="mso-spacerun:yes">     
 </span></span></p>
 
-<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+<p class=MsoNormal style='text-indent:21.0pt' align="left"><span style='font-family:宋体;
 mso-ascii-font-family:Calibri;mso-hansi-font-family:Calibri'>我们是</span> <u><span
 lang=EN-US><span style="mso-spacerun:yes">                              </span></span></u><span
 lang=EN-US><span style="mso-spacerun:yes"> </span></span><span
@@ -2286,37 +2289,38 @@ style='font-family:宋体;mso-ascii-font-family:Calibri;mso-hansi-font-family:Ca
 lang=EN-US><span style="mso-spacerun:yes">            </span></span></u><span
 lang=EN-US><span style="mso-spacerun:yes"> </span></span></p>
 
-<p class=MsoNormal><span style='font-family:宋体;mso-ascii-font-family:Calibri;
+<p class=MsoNormal align="left"><span style='font-family:宋体;mso-ascii-font-family:Calibri;
 mso-hansi-font-family:Calibri'>执法证件名称、编号是：</span><u><span lang=EN-US><span
 style="mso-spacerun:yes">                                          </span></span></u><span
 lang=EN-US><span style="mso-spacerun:yes"> </span></span><span
 style='font-family:宋体;mso-ascii-font-family:Calibri;mso-hansi-font-family:Calibri'>，请你确认。</span><u><span
 lang=EN-US><o:p></o:p></span></u></p>
 
-<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+<p class=MsoNormal style='text-indent:21.0pt' align="left"><span style='font-family:宋体;
 mso-ascii-font-family:Calibri;mso-hansi-font-family:Calibri'>我们依法就</span> <u><span
 lang=EN-US><span
 style="mso-spacerun:yes">                                                 </span></span></u><span
 style='font-family:宋体;mso-ascii-font-family:Calibri;mso-hansi-font-family:Calibri'>有关问题，进行</span></p>
 
-<p class=MsoNormal><span style='font-family:宋体;mso-ascii-font-family:Calibri;
+<p class=MsoNormal align="left"><span style='font-family:宋体;mso-ascii-font-family:Calibri;
 mso-hansi-font-family:Calibri'>现场检查，请予配合。根据《中华人民共和国行政处罚法》第三十七条第三款的规定，如果你认为检查人员与当事人有直接利害关系的，你有申请检查人员回避的权利。</span></p>
 
-<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0'><span
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0' align="left"><span
 style='font-family:宋体;mso-ascii-font-family:Calibri;mso-hansi-font-family:Calibri'>问：你是否申请检查人员回避？</span></p>
 
-<p >答：</p>
+<p class=MsoNormal align="left"><span lang=EN-US><span style="mso-spacerun:yes">    </span></span><span
+style='font-family:宋体;mso-ascii-font-family:Calibri;mso-hansi-font-family:Calibri'>答：</span></p>
 <textarea style="resize:none;width:600px;height:100px;"></textarea>
-<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+<p class=MsoNormal align="left"><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
 
-<p class=MsoNormal><span lang=EN-US><span style="mso-spacerun:yes">    </span></span><span
+<p class=MsoNormal align="left"><span lang=EN-US><span style="mso-spacerun:yes">    </span></span><span
 style='font-family:宋体;mso-ascii-font-family:Calibri;mso-hansi-font-family:Calibri'>现场检查记录：</span></p>
 <textarea style="resize:none;width:600px;height:200px;">
 </textarea>
 
 <br style='mso-ignore:vglayout' clear=ALL>
 
-<p class=MsoNormal style='line-height:150%'><span style='font-size:10.0pt;
+<p class=MsoNormal style='line-height:150%' align="left"><span style='font-size:10.0pt;
 mso-bidi-font-size:11.0pt;line-height:150%;font-family:宋体;mso-ascii-font-family:
 Calibri;mso-hansi-font-family:Calibri'>注：本文书一式二联，第一联存档，第二联交被检查单位。被检查人在检查笔录上逐页签字，在修改处签字或者按指纹，并在笔录终了处注明对笔录真实性的意见；检查人应在笔录终了处签字。</span><span
 style='font-size:10.0pt;mso-bidi-font-size:11.0pt;line-height:150%'> <span

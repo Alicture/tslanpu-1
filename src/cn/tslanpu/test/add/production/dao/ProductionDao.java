@@ -169,6 +169,11 @@ public class ProductionDao {
 		String sql = "select id,qyname from production" ;
 		return qr.query(sql, new MapListHandler());
 	}
+	//获取企业名称
+	public List qynameData() throws SQLException{
+		String sql ="select qyname from production";
+		return qr.query(sql, new MapListHandler());
+	}
 	//根据企业名称查询Production对象
 	public Production byqynameFull(String qyname) throws SQLException {
 		String sql = "select * from production where qyname=?" ;

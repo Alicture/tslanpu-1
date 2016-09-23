@@ -1,6 +1,7 @@
 package cn.tslanpu.test.add.Criculate.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import cn.tslanpu.test.add.Criculate.dao.CriculateDao;
 import cn.tslanpu.test.add.Criculate.domain.Criculate;
@@ -8,7 +9,14 @@ import cn.tslanpu.test.pager.PageBean;
 
 public class CriculateService {
 	private CriculateDao criculateDao = new CriculateDao();
-	
+	//查询企业名称
+	public List findQyname() {
+		try{
+		return criculateDao.qynameData();
+		}catch(SQLException e){
+			throw new RuntimeException();
+		}
+	}
 	//增加流通单位信息
 	public void add(Criculate criculate){
 		try {

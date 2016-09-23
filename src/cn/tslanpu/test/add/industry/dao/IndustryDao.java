@@ -53,6 +53,8 @@ public class IndustryDao {
 					industry.getLatitude(),industry.getEveryOne(),industry.getAmend(), id };
 			qr.update(sql, params);
 		}
+		//查询 qyname
+//		public List=
 		//查询详细信息
 		public Industry industryFind(int id) throws SQLException{
 				String sql = "select * from industry where id=?";

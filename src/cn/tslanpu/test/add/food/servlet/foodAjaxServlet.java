@@ -43,7 +43,7 @@ public class foodAjaxServlet extends HttpServlet {
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("byqynameFood", food);
 			JSON jsonData = JSONObject.fromObject(map);
-			System.out.println(jsonData);
+//			System.out.println(jsonData);
 			response.getWriter().print(jsonData);
 		} catch (SQLException e)
 		{
