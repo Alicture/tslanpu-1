@@ -9,6 +9,16 @@ import cn.tslanpu.test.pager.PageBean;
 
 public class CriculateService {
 	private CriculateDao criculateDao = new CriculateDao();
+	//通过企业名查询信息
+	public Criculate findByQyname(String qyname){
+		try
+		{
+			return criculateDao.findByQyname(qyname);
+		} catch (SQLException e)
+		{
+			throw new RuntimeException();
+		}
+	}
 	//查询企业名称
 	public List findQyname() {
 		try{

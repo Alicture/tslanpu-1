@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import cn.itcast.jdbc.TxQueryRunner;
@@ -53,8 +54,16 @@ public class IndustryDao {
 					industry.getLatitude(),industry.getEveryOne(),industry.getAmend(), id };
 			qr.update(sql, params);
 		}
+		//通过 qyname 查询信息
+		public Industry findByQyname(String qyname) throws SQLException{
+			String sql="select * from industry where qyname=?";
+			return qr.query(sql, new BeanHandler(Industry.class),qyname);
+		}
 		//查询 qyname
-//		public List=
+		public List qynameData() throws SQLException{
+			String sql ="select qyname from industry";
+			return qr.query(sql, new MapListHandler());
+		}
 		//查询详细信息
 		public Industry industryFind(int id) throws SQLException{
 				String sql = "select * from industry where id=?";

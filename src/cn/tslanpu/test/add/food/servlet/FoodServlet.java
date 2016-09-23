@@ -14,6 +14,7 @@ import cn.itcast.commons.CommonUtils;
 import cn.tslanpu.test.add.Criculate.service.CriculateService;
 import cn.tslanpu.test.add.food.domain.Food;
 import cn.tslanpu.test.add.food.service.FoodService;
+import cn.tslanpu.test.add.industry.service.IndustryService;
 import cn.tslanpu.test.add.production.service.ProductionService;
 import cn.tslanpu.test.admin.domain.Admin;
 import cn.tslanpu.test.utils.BaseServlet;
@@ -31,9 +32,12 @@ public class FoodServlet extends BaseServlet {
 		list1=new CriculateService().findQyname();
 		List<Map<String, String>> list2 = new ArrayList<Map<String, String>>();
 		list2=new ProductionService().findQyname();
+		List<Map<String, String>> list3 = new ArrayList<Map<String, String>>();
+		list3=new IndustryService().findQyname();
+		request.setAttribute("qy3", list3);
 		request.setAttribute("qy2", list2);
 		request.setAttribute("qy1", list1);
-//		System.out.println(list2);
+//		System.out.println(list3);
 		request.setAttribute("qy", list);
 		request.getRequestDispatcher("/pages/exam/food/food.jsp").forward(request, response);
 		
