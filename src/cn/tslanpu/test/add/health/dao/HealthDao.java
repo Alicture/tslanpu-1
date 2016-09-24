@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import cn.itcast.jdbc.TxQueryRunner;
@@ -33,6 +34,10 @@ public class HealthDao {
 					health.getLatitude(),health.getJyType(),health.getHealthFood(),health.getCosmetic(),health.getCyNum(),
 					health.getGraduateNum(),health.getJuniorNum(),health.getManage(),health.getAmend() };
 			qr.update(sql, params);
+		}
+		public List qynameData() throws SQLException{
+			String sql = "select qyname from health";
+			return qr.query(sql, new MapListHandler());
 		}
 		
 		//更新信息

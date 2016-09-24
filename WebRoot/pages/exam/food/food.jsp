@@ -154,12 +154,17 @@
   			</c:forEach> +","+
 			<c:forEach var="item" items="${qy3}">   
 			  "${item.qyname}",   
+			</c:forEach>  +","+
+			<c:forEach var="item" items="${qy4}">   
+			  "${item.qyname}",  
 			</c:forEach> 
     		    ];
     		    $( "#dwname" ).autocomplete({
-    		      source: availableTags,
-    		      max:10
-    		    });
+    		    	source: function(request, response) {
+        			var results = $.ui.autocomplete.filter(availableTags, request.term);
+       				response(results.slice(0, 10));}
+    		    }
+    		    );
     		  });
     	  function qyname(){
     		  var name = $("#dwname").val();
@@ -178,13 +183,14 @@
     	  				//food
     	  				if(jsonData.byqynameFood!=null)
     	  					{
-    	  					
         	  				var qyname = jsonData.byqynameFood.qyname;//被抽检单位
         	  				var scaddress = jsonData.byqynameFood.scaddress;//生产地址
         	  				var qyphone = jsonData.byqynameFood.qyphone; //企业负责人手机号
         	  				var qydelegate = jsonData.byqynameFood.qydelegate;//企业负责人
         	  				var scpermit = jsonData.byqynameFood.scpermit;//食品生产许可证编号
         	  				var zzcode = jsonData.byqynameFood.zzcode;//注册号
+        	  				var fddelegate = jsonData.byqynameFood.fddelegate;//法定代表人
+        	  				var ems = jsonData.byqynameFood.ems;//邮编
     	  					}
     	  				else if(jsonData.byqynameIndustry!=null){
     	  					var qyname = jsonData.byqynameIndustry.qyname;//被抽检单位
@@ -193,6 +199,8 @@
         	  				var qydelegate = jsonData.byqynameIndustry.qydelegate;//企业负责人
         	  				var scpermit = jsonData.byqynameIndustry.scpermit;//食品生产许可证编号
         	  				var zzcode = jsonData.byqynameIndustry.zzcode;//注册号
+        	  				var fddelegate = jsonData.byqynameIndustry.fddelegate;
+        	  				var ems = jsonData.byqynameIndustry.ems;//邮编
     	  					}
     	  				else if(jsonData.byqynameCriculate!=null){
         	  				var qyname = jsonData.byqynameCriculate.qyname;//被抽检单位
@@ -201,6 +209,8 @@
             	  			var qydelegate = jsonData.byqynameCriculate.qydelegate;//企业负责人
             	  			var scpermit = jsonData.byqynameCriculate.scpermit;//食品生产许可证编号
             	  			var zzcode = jsonData.byqynameCriculate.zzcode;//注册号
+            	  			var fddelegate = jsonData.byqynameCriculate.fddelegate;
+            	  			var ems = jsonData.byqynameCriculate.ems;//邮编
         	  				}
     	  				else if(jsonData.byqynameProduction!=null){
         	  				var qyname = jsonData.byqynameProduction.qyname;//被抽检单位
@@ -209,6 +219,18 @@
             	  			var qydelegate = jsonData.byqynameProduction.qydelegate;//企业负责人
             	  			var scpermit = jsonData.byqynameProduction.scpermit;//食品生产许可证编号
             	  			var zzcode = jsonData.byqynameProduction.zzcode;//注册号
+            	  			var fddelegate = jsonData.byqynameProduction.fddelegate;
+            	  			var ems = jsonData.byqynameProduction.ems;//邮编
+        	  				}
+    	  				else if(jsonData.byqynameAgricultural!=null){
+        	  				var qyname = jsonData.byqynameAgricultural.qyname;//被抽检单位
+            	  			var scaddress = jsonData.byqynameAgricultural.scaddress;//生产地址
+            	  			var qyphone = jsonData.byqynameAgricultural.qyphone; //企业负责人手机号
+            	  			var qydelegate = jsonData.byqynameAgricultural.qydelegate;//企业负责人
+            	  			var scpermit = jsonData.byqynameAgricultural.scpermit;//食品生产许可证编号
+            	  			var zzcode = jsonData.byqynameAgricultural.zzcode;//注册号
+            	  			var fddelegate = jsonData.byqynameAgricultural.fddelegate;
+            	  			var ems = jsonData.byqynameAgricultural.ems;//邮编
         	  				}
     	  		
     	  				/* var qyname = jsonData.byqynameFood.qyname;//被抽检单位
@@ -218,12 +240,21 @@
     	  				var fdscpermit = jsonData.byqynameFood.scpermit;//食品生产许可证编号
     	  				var fdzzcode = jsonData.byqynameFood.zzcode;//注册号 */
     	  				
-    	  				$("#d1bcjdw").attr("value",qyname);
-    	  				//
+    	  				$("#d1bcjdw").attr("value",fddelegate);
+    	  				$("#bcydwname").attr("value",qyname);
+    	  				$("#bcydwdz").attr("value",scaddress);
+    	  				$("#bcjfrdb").attr("value",fddelegate);
+    	  				$("#bcyzzcode").attr("value",zzcode);
+    	  				$("#bcylxr").attr("value",qydelegate);
+    	  				$("#bcydwtele").attr("value",qyphone);
+    	  				$("#ems").attr("value",ems);
+    	  				
+   
     	  			}
     		  });
     	  }
        </script>
+
 <style>
 .textareaStyle {
 	width: 100%;
@@ -232,6 +263,14 @@
 }
 </style>
 <style>
+
+.dzinputStyle {
+	width: 400px;
+	BORDER-TOP-STYLE: none;
+	BORDER-RIGHT-STYLE: none;
+	BORDER-LEFT-STYLE: none;
+	BORDER-BOTTOM-STYLE: solid
+}
 .inputStyle {
 	width: 200px;
 	BORDER-TOP-STYLE: none;
@@ -239,14 +278,30 @@
 	BORDER-LEFT-STYLE: none;
 	BORDER-BOTTOM-STYLE: solid
 }
-</style>
-<style>
+.tabinputStyle {
+	width: 200px;
+	BORDER-TOP-STYLE: none;
+	BORDER-RIGHT-STYLE: none;
+	BORDER-LEFT-STYLE: none;
+}
 .miniinputStyle {
 	width: 50px;
 	BORDER-TOP-STYLE: none;
 	BORDER-RIGHT-STYLE: none;
 	BORDER-LEFT-STYLE: none;
 	BORDER-BOTTOM-STYLE: solid
+}
+.tabminiinputStyle {
+	width: 50px;
+	BORDER-TOP-STYLE: none;
+	BORDER-RIGHT-STYLE: none;
+	BORDER-LEFT-STYLE: none;
+}
+.tabmidinputStyle {
+	width: 120px;
+	BORDER-TOP-STYLE: none;
+	BORDER-RIGHT-STYLE: none;
+	BORDER-LEFT-STYLE: none;
 }
 </style>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -534,7 +589,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 
 								<p class=MsoNormal>
 									<span
-										style='font-size: 10.5pt; mso-ascii-font-family: "Times New Roman"'>抽样单编号：</span><input
+										style='font-size: 10.5pt; mso-ascii-font-family: "Times New Roman"'>抽样单编号：</span><input id="d2bianhao"
 										class="inputStyle"><span lang=EN-US
 										style='font-size: 10.5pt; font-family: "Times New Roman"'><span
 										style="mso-spacerun: yes">                          </span><span
@@ -570,7 +625,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=235 colspan=9
 												style='width: 234.55pt; border: solid windowtext 1.0pt; border-left: none; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p>&nbsp;</o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="d2rwly" type="text" class="tabinputStyle"></o:p></span>
 												</p>
 											</td>
 											<td width=54 colspan=2
@@ -582,7 +637,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=123 colspan=6
 												style='width: 122.5pt; border: solid windowtext 1.0pt; border-left: none; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span style='font-size: 10.5pt'>□监督抽检 □风险监测<span
+													<span style='font-size: 10.5pt'><input type="radio" name="rwlb" value="监督抽检">监督抽检 <input type="radio" name="rwlb" value="风险监测">风险监测<span
 														lang=EN-US><o:p></o:p></span></span>
 												</p>
 											</td>
@@ -606,7 +661,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=235 colspan=9
 												style='width: 234.55pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p>&nbsp;</o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="bcydwname" type="text" class="tabinputStyle"/></o:p></span>
 												</p>
 											</td>
 											<td width=54 colspan=2
@@ -618,7 +673,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=123 colspan=6
 												style='width: 122.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span style='font-size: 10.5pt'>城市 □乡村 □景点<span
+													<span style='font-size: 10.5pt'><input type="radio" name="dctype" value="城市">城市<input type="radio" name="dctype" value="乡村">乡村<input type="radio" name="dctype" value="景点">景点<span
 														lang=EN-US><o:p></o:p></span></span>
 												</p>
 											</td>
@@ -647,12 +702,10 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 															style="mso-spacerun: yes">  </span></span>乡（镇）<span lang=EN-US><o:p></o:p></span></span>
 												</p>
 												<p class=MsoNormal
-													style='line-height: 16.0pt; mso-line-height-rule: exactly'>
+													style='line-height: 16.0pt; mso-line-height-rule: exactly' align="center">
 													<span lang=EN-US style='font-size: 10.5pt'><span
-														style="mso-spacerun: yes">  </span><u><span
-															style="mso-spacerun: yes">                                                   </span><span
-															style="mso-spacerun: yes">                 </span><span
-															style="mso-spacerun: yes">     </span> <o:p></o:p></u></span>
+														style="mso-spacerun: yes">  </span><span
+															style="mso-spacerun: yes"></span> <o:p><input id="bcydwdz" type="text" class="dzinputStyle"></o:p></span>
 												</p>
 											</td>
 										</tr>
@@ -666,7 +719,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=56 colspan=2
 												style='width: 56.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p>&nbsp;</o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="bcjfrdb" type="text" class="tabinputStyle"/></o:p></span>
 												</p>
 											</td>
 											<td width=48 colspan=5
@@ -678,7 +731,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=131 colspan=2
 												style='width: 130.55pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=right style='text-align: right'>
-													<span style='font-size: 10.5pt'>万元<span lang=EN-US><o:p></o:p></span></span>
+													<span style='font-size: 10.5pt'><input id="bcjxse" type="text" class="tabminiinputStyle">万元<span lang=EN-US><o:p></o:p></span></span>
 												</p>
 											</td>
 											<td width=70 colspan=3
@@ -691,7 +744,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=107 colspan=5
 												style='width: 106.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p>&nbsp;</o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="bcyzzcode" type="text" class="tabmidinputStyle"></o:p></span>
 												</p>
 											</td>
 										</tr>
@@ -706,7 +759,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=56 colspan=2
 												style='width: 56.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p>&nbsp;</o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="bcylxr" type="text" class="tabinputStyle"></o:p></span>
 												</p>
 											</td>
 											<td width=48 colspan=5
@@ -719,7 +772,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=88
 												style='width: 88.05pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p>&nbsp;</o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input class="tabmidinputStyle" type="text" id="bcydwtele"></o:p></span>
 												</p>
 											</td>
 											<td width=43
@@ -731,7 +784,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=70 colspan=3
 												style='width: 69.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p>&nbsp;</o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="fax" type="text" class="tabminiinputStyle"></o:p></span>
 												</p>
 											</td>
 											<td width=35 colspan=2
@@ -743,7 +796,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=72 colspan=3
 												style='width: 72.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p>&nbsp;</o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input class="tabmidinputStyle" type="text" id="ems"></o:p></span>
 												</p>
 											</td>
 										</tr>
@@ -758,64 +811,58 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 												style='width: 463.95pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal
 													style='line-height: 11.0pt; mso-line-height-rule: exactly'>
-													<span style='font-size: 9.0pt'>生产环节：□原辅料库<span
+													<span style='font-size: 9.0pt'>生产环节：<input type="radio" name="schj" value="原辅料库">原辅料库<span
 														lang=EN-US><span style="mso-spacerun: yes"> 
-														</span></span>□生产线<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span>□半成品库<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span>成品库（□待检区 □已检区）<span
+														</span></span><input type="radio" name="schj" value="生产线">生产线<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="schj" value="半成品库">半成品库<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span>成品库（<input type="radio" name="schjcpk" value="待检区">待检区 <input type="radio" name="schjcpk" value="已检区">已检区）<span
 														lang=EN-US><o:p></o:p></span></span>
 												</p>
 												<p class=MsoNormal
 													style='line-height: 11.0pt; mso-line-height-rule: exactly'>
-													<span style='font-size: 9.0pt'>流通环节：□农贸市场<span
+													<span style='font-size: 9.0pt'>流通环节：<input type="radio" name="lthj" value="农贸市场">农贸市场<span
 														lang=EN-US><span style="mso-spacerun: yes"> 
 														</span></span>□菜市场<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span>□批发市场<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span>□商场<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span>□超市<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span>□小食杂店<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span>□网购<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span>□其他（<u><span
-															lang=EN-US><span style="mso-spacerun: yes">    
-															</span><span style="mso-spacerun: yes">   </span><span
-																style="mso-spacerun: yes">     </span></span></u>）<span lang=EN-US><o:p></o:p></span></span>
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="lthj" value="批发市场">批发市场<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="lthj" value="商店">商场<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="lthj" value="超市">超市<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="lthj" value="小食杂店">小食杂店<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="lthj" value="网购">网购<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="lthj" value="其他">其他（<input id=" lyhjother" type="text" class="miniinputStyle">）<span lang=EN-US><o:p></o:p></span></span>
 												</p>
 												<p class=MsoNormal
 													style='line-height: 11.0pt; mso-line-height-rule: exactly'>
-													<span style='font-size: 9.0pt'>餐饮环节：□餐馆（□特大型餐馆<span
+													<span style='font-size: 9.0pt'>餐饮环节：<input type="radio" name="cyhj" value="餐馆">餐馆（<input type="radio" name="cg" value="特大型餐馆">特大型餐馆<span
 														lang=EN-US><span style="mso-spacerun: yes"> 
-														</span></span>□大型餐馆<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span>□中型餐馆<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span>□小型餐馆）<span lang=EN-US><o:p></o:p></span></span>
+														</span></span><input type="radio" name="cg" value="大型餐馆">大型餐馆<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="cg" value="中型餐馆">中型餐馆<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="cg" value="小型餐馆">小型餐馆）<span lang=EN-US><o:p></o:p></span></span>
 												</p>
 												<p class=MsoNormal
 													style='line-height: 11.0pt; mso-line-height-rule: exactly'>
 													<span lang=EN-US style='font-size: 9.0pt'><span
 														style="mso-spacerun: yes">          </span></span><span
-														style='font-size: 9.0pt'>□食堂（□机关食堂<span lang=EN-US><span
-															style="mso-spacerun: yes">    </span></span>□学校
+														style='font-size: 9.0pt'><input type="radio" name="cyhj" value="食堂">食堂（<input type="radio" name="st" value="机关食堂">机关食堂<span lang=EN-US><span
+															style="mso-spacerun: yes">    </span></span><input type="radio" name="st" value="学校">学校
 													</span><span
 														style='font-size: 9.0pt; font-family: 宋体; mso-ascii-font-family: 仿宋_GB2312; mso-bidi-font-family: 宋体'>∕</span><span
 														style='font-size: 9.0pt'>托幼食堂<span lang=EN-US><span
 															style="mso-spacerun: yes">    </span><span
-															style="mso-spacerun: yes">    </span></span>□企事业单位食堂<span
+															style="mso-spacerun: yes">    </span></span><input type="radio" name="st" value="企事业单位食堂">企事业单位食堂<span
 														lang=EN-US><span style="mso-spacerun: yes">       
-														</span></span>□建筑工地食堂）<span lang=EN-US><o:p></o:p></span></span>
+														</span></span><input type="radio" name="st" value="建筑工地食堂">建筑工地食堂）<span lang=EN-US><o:p></o:p></span></span>
 												</p>
 												<p class=MsoNormal
 													style='line-height: 11.0pt; mso-line-height-rule: exactly'>
 													<span lang=EN-US style='font-size: 9.0pt'><span
 														style="mso-spacerun: yes">          </span></span><span
-														style='font-size: 9.0pt'>□小吃店<span lang=EN-US><span
-															style="mso-spacerun: yes">    </span></span>□快餐店<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span>□饮品店<span lang=EN-US><span
-															style="mso-spacerun: yes">    </span></span>□集体用餐配送单位<span
+														style='font-size: 9.0pt'><input type="radio" name="cyhj" value="小吃店">小吃店<span lang=EN-US><span
+															style="mso-spacerun: yes">    </span></span><input type="radio" name="cyhj" value="快餐店">快餐店<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="cyhj" value="饮品店">饮品店<span lang=EN-US><span
+															style="mso-spacerun: yes">    </span></span><input type="radio" name="cyhj" value="集体用餐配送单位">集体用餐配送单位<span
 														lang=EN-US><span style="mso-spacerun: yes"> 
-														</span></span>□中央厨房<span lang=EN-US><span
-															style="mso-spacerun: yes">      </span></span>□其他（<u><span
-															lang=EN-US><span style="mso-spacerun: yes">       
-															</span><span style="mso-spacerun: yes">   </span><span
-																style="mso-spacerun: yes">  </span></span></u>）<span lang=EN-US><o:p></o:p></span></span>
+														</span></span><input type="radio" name="cyhj" value="中央厨房">中央厨房<span lang=EN-US><span
+															style="mso-spacerun: yes">      </span></span><input type="radio" name="cyhj" value="其他">其他（<input id="cyhjother" type="text" class="miniinputStyle">）<span lang=EN-US><o:p></o:p></span></span>
 												</p>
 											</td>
 										</tr>
@@ -835,14 +882,14 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=323 colspan=12
 												style='width: 322.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span style='font-size: 10.5pt'>□加工</span><span
+													<span style='font-size: 10.5pt'><input type="radio" name="yply" value="加工">加工</span><span
 														style='font-size: 10.5pt; font-family: 宋体; mso-ascii-font-family: 仿宋_GB2312; mso-bidi-font-family: 宋体'>∕</span><span
 														style='font-size: 10.5pt; mso-hansi-font-family: 宋体; mso-bidi-font-family: 宋体'>自制<span
 														lang=EN-US><span style="mso-spacerun: yes">   
-														</span></span></span><span style='font-size: 10.5pt'>□委托生产<span
+														</span></span></span><span style='font-size: 10.5pt'><input type="radio" name="yply" value="委托生产">委托生产<span
 														lang=EN-US><span style="mso-spacerun: yes">   
-														</span></span>□外购<span lang=EN-US><span style="mso-spacerun: yes">   
-														</span></span>□其他<span lang=EN-US><o:p></o:p></span></span>
+														</span></span><input type="radio" name="yply" value="外购">外购<span lang=EN-US><span style="mso-spacerun: yes">   
+														</span></span><input type="radio" name="yply" value="其他">其他<span lang=EN-US><o:p></o:p></span></span>
 												</p>
 											</td>
 										</tr>

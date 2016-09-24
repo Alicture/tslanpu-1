@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import cn.itcast.commons.CommonUtils;
 import cn.tslanpu.test.add.Criculate.service.CriculateService;
+import cn.tslanpu.test.add.agricultural.service.AgriculturalService;
 import cn.tslanpu.test.add.food.domain.Food;
 import cn.tslanpu.test.add.food.service.FoodService;
 import cn.tslanpu.test.add.industry.service.IndustryService;
@@ -34,6 +35,9 @@ public class FoodServlet extends BaseServlet {
 		list2=new ProductionService().findQyname();
 		List<Map<String, String>> list3 = new ArrayList<Map<String, String>>();
 		list3=new IndustryService().findQyname();
+		List<Map<String, String>> list4 = new ArrayList<Map<String, String>>();
+		list4=new AgriculturalService().findQyName();
+		request.setAttribute("qy4", list4);
 		request.setAttribute("qy3", list3);
 		request.setAttribute("qy2", list2);
 		request.setAttribute("qy1", list1);
