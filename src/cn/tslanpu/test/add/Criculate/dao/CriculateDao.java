@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import cn.itcast.jdbc.TxQueryRunner;
@@ -72,7 +73,17 @@ public class CriculateDao {
 				criculate.getAmend(),criculate.getFddelegate(),criculate.getFdphone(), id};
 		return qr.update(sql,params);
 }
-	
+	//通过企业名查询企业信息
+	public Criculate findByQyname(String qyname) throws SQLException{
+		String sql="select * from criculate where qyname=?";
+		return qr.query(sql, new BeanHandler(Criculate.class),qyname);
+	}
+	//查询企业名
+	public List qynameData() throws SQLException{
+		String sql="select qyname from criculate";
+		return qr.query(sql, new MapListHandler());
+		
+	}
 	//删除流通单位信息
 	public void delete(int id) throws SQLException{
 			String sql = "delete from criculate where id=?";

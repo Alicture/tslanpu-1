@@ -11,6 +11,15 @@ import cn.tslanpu.test.pager.PageBean;
 
 public class ProductionService {
 	private ProductionDao productionDao = new ProductionDao();
+//	查询企业名
+	public List findQyname(){
+		try{
+		return productionDao.qynameData();
+		}catch(SQLException e){
+			throw new RuntimeException();
+			
+		}
+	}
 	//增加生产企业信息
 	public void add(Production production){
 		try {
@@ -110,7 +119,7 @@ public class ProductionService {
 	}
 	public Production byqynameFull(String qyname) {
 		try {
-			System.out.println("已经ajax");
+			
 			return productionDao.byqynameFull(qyname);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

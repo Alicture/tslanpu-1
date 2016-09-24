@@ -1,6 +1,9 @@
 package cn.tslanpu.test.add.food.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -8,9 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import cn.itcast.commons.CommonUtils;
+import cn.tslanpu.test.add.Criculate.service.CriculateService;
+import cn.tslanpu.test.add.agricultural.service.AgriculturalService;
 import cn.tslanpu.test.add.food.domain.Food;
 import cn.tslanpu.test.add.food.service.FoodService;
-import cn.tslanpu.test.add.industry.domain.Industry;
+import cn.tslanpu.test.add.industry.service.IndustryService;
+import cn.tslanpu.test.add.production.service.ProductionService;
 import cn.tslanpu.test.admin.domain.Admin;
 import cn.tslanpu.test.utils.BaseServlet;
 import cn.tslanpu.test.utils.TokenProccessor;
@@ -19,7 +25,27 @@ public class FoodServlet extends BaseServlet {
 	
 	private static final long serialVersionUID = 1L;
 	private FoodService foodService = new FoodService();
-	
+	public void findQYname(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, SQLException {
+		List<Map<String, String>> list = new ArrayList<Map<String, String>>();
+		list=foodService.FindQyname();
+		List<Map<String, String>> list1 = new ArrayList<Map<String, String>>();
+		list1=new CriculateService().findQyname();
+		List<Map<String, String>> list2 = new ArrayList<Map<String, String>>();
+		list2=new ProductionService().findQyname();
+		List<Map<String, String>> list3 = new ArrayList<Map<String, String>>();
+		list3=new IndustryService().findQyname();
+		List<Map<String, String>> list4 = new ArrayList<Map<String, String>>();
+		list4=new AgriculturalService().findQyName();
+		request.setAttribute("qy4", list4);
+		request.setAttribute("qy3", list3);
+		request.setAttribute("qy2", list2);
+		request.setAttribute("qy1", list1);
+//		System.out.println(list3);
+		request.setAttribute("qy", list);
+		request.getRequestDispatcher("/pages/exam/food/food.jsp").forward(request, response);
+		
+	}
 	//增加信息
 	public void add(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
