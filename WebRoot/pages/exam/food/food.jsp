@@ -60,6 +60,17 @@
 
 </head>
 <script>
+		function cpk(){
+			if(document.getElementById("cpk").checked==true){
+				document.getElementById("djq").disabled=false;
+				document.getElementById("yjq").disabled=false;
+			}else{
+				document.getElementById("djq").disabled=true;
+				document.getElementById("yjq").disabled=true;
+				document.getElementById("djq").checked=false;
+				document.getElementById("yjq").checked=false;
+			}
+		}
 		$(function(){
 			$("#cjsj").datetimepicker();
 			$("#div1cytime").datetimepicker();
@@ -811,18 +822,18 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 												style='width: 463.95pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal
 													style='line-height: 11.0pt; mso-line-height-rule: exactly'>
-													<span style='font-size: 9.0pt'>生产环节：<input type="radio" name="schj" value="原辅料库">原辅料库<span
+													<span style='font-size: 9.0pt'>生产环节：<input type="radio" name="schj" value="原辅料库" onclick="cpk()">原辅料库<span
 														lang=EN-US><span style="mso-spacerun: yes"> 
-														</span></span><input type="radio" name="schj" value="生产线">生产线<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span><input type="radio" name="schj" value="半成品库">半成品库<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span>成品库（<input type="radio" name="schjcpk" value="待检区">待检区 <input type="radio" name="schjcpk" value="已检区">已检区）<span
+														</span></span><input type="radio" name="schj" value="生产线" onclick="cpk()">生产线<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="schj" value="半成品库" onclick="cpk()">半成品库<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input id="cpk" type="radio" name="schj" value="成品库" onclick="cpk()">成品库（<input id="djq" type="radio" name="schjcpk" value="待检区" disabled>待检区 <input id="yjq" type="radio" name="schjcpk" value="已检区" disabled>已检区）<span
 														lang=EN-US><o:p></o:p></span></span>
 												</p>
 												<p class=MsoNormal
 													style='line-height: 11.0pt; mso-line-height-rule: exactly'>
 													<span style='font-size: 9.0pt'>流通环节：<input type="radio" name="lthj" value="农贸市场">农贸市场<span
 														lang=EN-US><span style="mso-spacerun: yes"> 
-														</span></span>□菜市场<span lang=EN-US><span
+														</span></span><input type="radio" name="lthj" value="菜市场">菜市场<span lang=EN-US><span
 															style="mso-spacerun: yes">  </span></span><input type="radio" name="lthj" value="批发市场">批发市场<span lang=EN-US><span
 															style="mso-spacerun: yes">  </span></span><input type="radio" name="lthj" value="商店">商场<span lang=EN-US><span
 															style="mso-spacerun: yes">  </span></span><input type="radio" name="lthj" value="超市">超市<span lang=EN-US><span
