@@ -18,6 +18,8 @@ import cn.tslanpu.test.add.food.service.FoodService;
 import cn.tslanpu.test.add.industry.service.IndustryService;
 import cn.tslanpu.test.add.production.service.ProductionService;
 import cn.tslanpu.test.admin.domain.Admin;
+import cn.tslanpu.test.exam.food.domain.FoodExam1;
+import cn.tslanpu.test.exam.food.service.FoodExamService;
 import cn.tslanpu.test.utils.BaseServlet;
 import cn.tslanpu.test.utils.TokenProccessor;
 
@@ -25,6 +27,7 @@ public class FoodServlet extends BaseServlet {
 	
 	private static final long serialVersionUID = 1L;
 	private FoodService foodService = new FoodService();
+	private FoodExamService foodexService = new FoodExamService();
 	public void findQYname(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 		List<Map<String, String>> list = new ArrayList<Map<String, String>>();
@@ -46,10 +49,26 @@ public class FoodServlet extends BaseServlet {
 		request.getRequestDispatcher("/pages/exam/food/food.jsp").forward(request, response);
 		
 	}
+	//食品抽样表1
+	public void submitData(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, SQLException {
+			FoodExam1 foodex1 = new FoodExam1();
+			request.setCharacterEncoding("UTF-8") ; 
+			foodex1.setNo(Integer.parseInt(request.getParameter("d1num")));
+			foodex1.setExamtype(request.getParameter("d1examtype"));
+			foodex1.setExamdate(request.getParameter("div1cytime"));
+			foodex1.setExamedfood(request.getParameter("d1bcsp"));
+			foodex1.setExamdw(request.getParameter("d1cydw"));
+			foodex1.setExampepl(request.getParameter("d1cyry"));
+			foodex1.setExamedqy(request.getParameter("d1bcjdw"));
+			foodexService.add(foodex1);
+			request.setAttribute("success","提交成功");
+			request.getRequestDispatcher("/FoodServlet?method=findQYname").forward(request, response);
+			
+	}
 	//增加信息
 	public void add(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
 			 boolean b = isRepeatSubmit(request);//判断用户是否是重复提交
 	         if(b==true){
 	        	 request.setAttribute("success", "请不要重复提交");

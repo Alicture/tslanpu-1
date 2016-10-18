@@ -1,5 +1,5 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-
+<%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%
@@ -16,6 +16,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
 <title>食品药品动态监管系统</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta
@@ -60,6 +61,68 @@
 
 </head>
 <script>
+
+$(function(){
+	//显示提交成功
+	if(${success eq null}){
+	
+		}else{
+			alert("${success}");
+		}
+});
+		$(document).ready(function(){
+			$("#div1sub").click(function(){
+				if($("#d1num").val()==""||$("#d1bcjdw").val()==""||$("#d1bcsp").val()==""||$("#d1cydw").val()==""||$("#d1cyry").val()==""||$("#div1cytime").val()==""||$("input:radio[name='examtype']:checked").val()==null){
+					alert("请填补未填项");
+					return false;
+				}
+				$("#formd1").submit();
+				return true;
+			});
+		});
+			function cg(){
+				
+				document.getElementById("jgst").disabled=true;
+				document.getElementById("xxst").disabled=true;
+				document.getElementById("qsyst").disabled=true;
+				document.getElementById("jzgdst").disabled=true;
+				document.getElementById("jgst").checked=false;
+				document.getElementById("xxst").checked=false;
+				document.getElementById("qsyst").checked=false;
+				document.getElementById("jzgdst").checked=false;
+			if(document.getElementById("div2cg").checked==true){
+				
+				document.getElementById("tdxcg").disabled=false;
+				document.getElementById("dxcg").disabled=false;
+				document.getElementById("zxcg").disabled=false;
+				document.getElementById("xxcg").disabled=false;
+			}else{
+				document.getElementById("tdxcg").disabled=true;
+				document.getElementById("dxcg").disabled=true;
+				document.getElementById("zxcg").disabled=true;
+				document.getElementById("xxcg").disabled=true;
+				document.getElementById("tdxcg").checked=false;
+				document.getElementById("dxcg").checked=false;
+				document.getElementById("zxcg").checked=false;
+				document.getElementById("xxcg").checked=false;
+			}
+			}
+			function st(){
+				document.getElementById("tdxcg").disabled=true;
+				document.getElementById("dxcg").disabled=true;
+				document.getElementById("zxcg").disabled=true;
+				document.getElementById("xxcg").disabled=true;
+				document.getElementById("tdxcg").checked=false;
+				document.getElementById("dxcg").checked=false;
+				document.getElementById("zxcg").checked=false;
+				document.getElementById("xxcg").checked=false;
+				document.getElementById("jgst").disabled=false;
+				document.getElementById("xxst").disabled=false;
+				document.getElementById("qsyst").disabled=false;
+				document.getElementById("jzgdst").disabled=false;
+			
+			}
+		
 		function cpk(){
 			if(document.getElementById("cpk").checked==true){
 				document.getElementById("djq").disabled=false;
@@ -78,7 +141,7 @@
 			$("#div2yptime").datetimepicker();
 			$("#div3cytime").datetimepicker();	
 			$("#d7sytime").datetimepicker();
-					
+			$("#d2bzq").datetimepicker();		
 		});
 		
 		
@@ -274,6 +337,12 @@
 }
 </style>
 <style>
+.tablonginputStyle {
+	width: 400px;
+	BORDER-TOP-STYLE: none;
+	BORDER-RIGHT-STYLE: none;
+	BORDER-LEFT-STYLE: none;
+}
 
 .dzinputStyle {
 	width: 400px;
@@ -386,6 +455,8 @@
 										</tr>
 								</table>
 							</form>
+	<form id="formd1" action="<c:url value='/FoodExamServlet'/>" name="tabd1" method="post">
+	  <input type="hidden" name="method" value="add">
 
 							<div id="div1" style="display: none">
 								<p class=MsoNormal align=center style='text-align: center'>
@@ -396,11 +467,10 @@
 								<p class=MsoNormal align=center style='text-align: center'>
 									<span lang=EN-US style='font-size: 22.0pt'><o:p>&nbsp;</o:p></span>
 								</p>
-
 							<p class=MsoNormal align=center style='text-align:right'><span lang=EN-US
 style='font-size:22.0pt'><span style="mso-spacerun:yes">                  
 </span></span><span lang=EN-US style='font-size:12.0pt'>No<input
-										id="d1num" class="inputStyle"><span
+										id="d1num" name="no" class="inputStyle"><span
 										style="mso-spacerun: yes">               </span> <o:p></o:p></span>
 								</p>
 
@@ -416,7 +486,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 								<p class=MsoNormal align=center style='text-align: left'>
 									<span lang=EN-US style='font-size: 15.0pt; font-family: 仿宋_GB2312><spanstyle="mso-spacerun: yes">                       </span></span><span
 										style='font-size: 15.0pt; font-family: 仿宋_GB2312'><input
-										id="d1bcjdw" class="inputStyle">：<span
+										id="d1bcjdw" name="examedqy" class="inputStyle">：<span
 										lang=EN-US><o:p></o:p></span></span>
 								</p>
 								<p align="left">
@@ -428,21 +498,21 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 								</p>
 								<table border="0" align="center">
 									<tr>
-										<td>被抽食品：<input id="d1bcsp" class="inputStyle">
+										<td>被抽食品：<input id="d1bcsp" name="examedfood" class="inputStyle">
 										</td>
 									</tr>
 
 									<tr>
-										<td>抽样单位：<input id="d1cydw" class="inputStyle">
+										<td>抽样单位：<input id="d1cydw" name="examdw" class="inputStyle">
 										</td>
 									<tr>
-										<td>抽样人员：<input id="d1cyry" class="inputStyle">
+										<td>抽样人员：<input id="d1cyry" name="exampepl" class="inputStyle">
 										</td>
 									</tr>
 
 									<tr>
 										<td>抽样日期：<span><input type="text"
-												class="inputStyle" id="div1cytime" readonly /> </span>
+												class="inputStyle" id="div1cytime" name="examdate" readonly /> </span>
 
 										</td>
 									</tr>
@@ -482,7 +552,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 										</span></span>月<span lang=EN-US><span style="mso-spacerun: yes">   
 										</span></span>日<span lang=EN-US><o:p></o:p></span></span>
 								</p>
-
+								
 								<p class=MsoNormal>
 									<span lang=EN-US
 										style='font-size: 12.0pt; font-family: 仿宋_GB2312'><o:p>&nbsp;</o:p></span>
@@ -589,8 +659,8 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 										style='font-size: 16.0pt; font-family: 仿宋_GB2312'>个工作日内反馈意见，逾期未反馈的，视为认同样品的真实性。<span
 										lang=EN-US><o:p></o:p></span></span>
 								</p>
-
 							</div>
+						
 							<div id="div2" style="display: none">
 								<p class=MsoNormal align=center
 									style='text-align: center; line-height: 28.0pt; mso-line-height-rule: exactly'>
@@ -617,7 +687,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 										style='font-size: 7.5pt; font-family: "Monotype Corsiva"'>
 									</span><span lang=EN-US
 										style='font-size: 10.5pt; font-family: "Times New Roman"'><span
-										style="mso-spacerun: yes"><input id="d2no" type="text"
+										style="mso-spacerun: yes"><input id="d2no" name="d2no" type="text"
 											class="miniinputStyle"></span> <o:p></o:p></span>
 								</p>
 
@@ -636,7 +706,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=235 colspan=9
 												style='width: 234.55pt; border: solid windowtext 1.0pt; border-left: none; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="d2rwly" type="text" class="tabinputStyle"></o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="d2rwly" name="d2missionsource" type="text" class="tabinputStyle"></o:p></span>
 												</p>
 											</td>
 											<td width=54 colspan=2
@@ -648,7 +718,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=123 colspan=6
 												style='width: 122.5pt; border: solid windowtext 1.0pt; border-left: none; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span style='font-size: 10.5pt'><input type="radio" name="rwlb" value="监督抽检">监督抽检 <input type="radio" name="rwlb" value="风险监测">风险监测<span
+													<span style='font-size: 10.5pt'><input type="radio" name="d2missiontype" value="监督抽检">监督抽检 <input type="radio" name="d2missiontype" value="风险监测">风险监测<span
 														lang=EN-US><o:p></o:p></span></span>
 												</p>
 											</td>
@@ -672,7 +742,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=235 colspan=9
 												style='width: 234.55pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="bcydwname" type="text" class="tabinputStyle"/></o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="bcydwname" name="d2bcydwname" type="text" class="tabinputStyle"/></o:p></span>
 												</p>
 											</td>
 											<td width=54 colspan=2
@@ -684,7 +754,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=123 colspan=6
 												style='width: 122.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span style='font-size: 10.5pt'><input type="radio" name="dctype" value="城市">城市<input type="radio" name="dctype" value="乡村">乡村<input type="radio" name="dctype" value="景点">景点<span
+													<span style='font-size: 10.5pt'><input type="radio" name="d2areatype" value="城市">城市<input type="radio" name="d2areatype" value="乡村">乡村<input type="radio" name="d2areatype" value="景点">景点<span
 														lang=EN-US><o:p></o:p></span></span>
 												</p>
 											</td>
@@ -716,7 +786,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 													style='line-height: 16.0pt; mso-line-height-rule: exactly' align="center">
 													<span lang=EN-US style='font-size: 10.5pt'><span
 														style="mso-spacerun: yes">  </span><span
-															style="mso-spacerun: yes"></span> <o:p><input id="bcydwdz" type="text" class="dzinputStyle"></o:p></span>
+															style="mso-spacerun: yes"></span> <o:p><input id="bcydwdz" name="d2dwadress" type="text" class="dzinputStyle"></o:p></span>
 												</p>
 											</td>
 										</tr>
@@ -730,7 +800,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=56 colspan=2
 												style='width: 56.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="bcjfrdb" type="text" class="tabinputStyle"/></o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="bcjfrdb" name="d2legaldelegate" type="text" class="tabmidinputStyle"/></o:p></span>
 												</p>
 											</td>
 											<td width=48 colspan=5
@@ -742,7 +812,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=131 colspan=2
 												style='width: 130.55pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=right style='text-align: right'>
-													<span style='font-size: 10.5pt'><input id="bcjxse" type="text" class="tabminiinputStyle">万元<span lang=EN-US><o:p></o:p></span></span>
+													<span style='font-size: 10.5pt'><input id="bcjxse" name="d2yearsail" type="text" class="tabminiinputStyle">万元<span lang=EN-US><o:p></o:p></span></span>
 												</p>
 											</td>
 											<td width=70 colspan=3
@@ -755,7 +825,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=107 colspan=5
 												style='width: 106.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="bcyzzcode" type="text" class="tabmidinputStyle"></o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="bcyzzcode" name="d2zzcode" type="text" class="tabmidinputStyle"></o:p></span>
 												</p>
 											</td>
 										</tr>
@@ -770,7 +840,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=56 colspan=2
 												style='width: 56.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="bcylxr" type="text" class="tabinputStyle"></o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="bcylxr" name="d2contact" type="text" class="tabmidinputStyle"></o:p></span>
 												</p>
 											</td>
 											<td width=48 colspan=5
@@ -783,7 +853,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=88
 												style='width: 88.05pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p><input class="tabmidinputStyle" type="text" id="bcydwtele"></o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input class="tabmidinputStyle" type="text" name="d2tele" id="bcydwtele"></o:p></span>
 												</p>
 											</td>
 											<td width=43
@@ -795,7 +865,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=70 colspan=3
 												style='width: 69.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="fax" type="text" class="tabminiinputStyle"></o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="fax" name="d2fax" type="text" class="tabminiinputStyle"></o:p></span>
 												</p>
 											</td>
 											<td width=35 colspan=2
@@ -807,7 +877,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=72 colspan=3
 												style='width: 72.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p><input class="tabmidinputStyle" type="text" id="ems"></o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input class="tabmidinputStyle" name="d2mailcode" type="text" id="ems"></o:p></span>
 												</p>
 											</td>
 										</tr>
@@ -824,56 +894,56 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 													style='line-height: 11.0pt; mso-line-height-rule: exactly'>
 													<span style='font-size: 9.0pt'>生产环节：<input type="radio" name="schj" value="原辅料库" onclick="cpk()">原辅料库<span
 														lang=EN-US><span style="mso-spacerun: yes"> 
-														</span></span><input type="radio" name="schj" value="生产线" onclick="cpk()">生产线<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span><input type="radio" name="schj" value="半成品库" onclick="cpk()">半成品库<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span><input id="cpk" type="radio" name="schj" value="成品库" onclick="cpk()">成品库（<input id="djq" type="radio" name="schjcpk" value="待检区" disabled>待检区 <input id="yjq" type="radio" name="schjcpk" value="已检区" disabled>已检区）<span
+														</span></span><input type="radio" name="d2production" value="生产线" onclick="cpk()">生产线<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="d2production" value="半成品库" onclick="cpk()">半成品库<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input id="cpk" type="radio" name="d2production" value="成品库" onclick="cpk()">成品库（<input id="djq" type="radio" name="d2cpk" value="待检区" disabled>待检区 <input id="yjq" type="radio" name="d2cpk" value="已检区" disabled>已检区）<span
 														lang=EN-US><o:p></o:p></span></span>
 												</p>
 												<p class=MsoNormal
 													style='line-height: 11.0pt; mso-line-height-rule: exactly'>
-													<span style='font-size: 9.0pt'>流通环节：<input type="radio" name="lthj" value="农贸市场">农贸市场<span
+													<span style='font-size: 9.0pt'>流通环节：<input type="radio" name="d2circulation" value="农贸市场">农贸市场<span
 														lang=EN-US><span style="mso-spacerun: yes"> 
 														</span></span><input type="radio" name="lthj" value="菜市场">菜市场<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span><input type="radio" name="lthj" value="批发市场">批发市场<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span><input type="radio" name="lthj" value="商店">商场<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span><input type="radio" name="lthj" value="超市">超市<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span><input type="radio" name="lthj" value="小食杂店">小食杂店<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span><input type="radio" name="lthj" value="网购">网购<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span><input type="radio" name="lthj" value="其他">其他（<input id=" lyhjother" type="text" class="miniinputStyle">）<span lang=EN-US><o:p></o:p></span></span>
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="d2circulation" value="批发市场">批发市场<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="d2circulation" value="商店">商场<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="d2circulation" value="超市">超市<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="d2circulation" value="小食杂店">小食杂店<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="d2circulation" value="网购">网购<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="d2circulation" value="其他">其他（<input id=" lyhjother" name="d2cother" type="text" class="miniinputStyle">）<span lang=EN-US><o:p></o:p></span></span>
 												</p>
 												<p class=MsoNormal
 													style='line-height: 11.0pt; mso-line-height-rule: exactly'>
-													<span style='font-size: 9.0pt'>餐饮环节：<input type="radio" name="cyhj" value="餐馆">餐馆（<input type="radio" name="cg" value="特大型餐馆">特大型餐馆<span
+													<span style='font-size: 9.0pt'>餐饮环节：<input type="radio" name="d2food" id="div2cg" value="餐馆" onclick="cg()">餐馆（<input type="radio" id="tdxcg" name="d2cgtype" value="特大型餐馆" disabled>特大型餐馆<span
 														lang=EN-US><span style="mso-spacerun: yes"> 
-														</span></span><input type="radio" name="cg" value="大型餐馆">大型餐馆<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span><input type="radio" name="cg" value="中型餐馆">中型餐馆<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span><input type="radio" name="cg" value="小型餐馆">小型餐馆）<span lang=EN-US><o:p></o:p></span></span>
+														</span></span><input type="radio" name="cg" id="dxcg" value="大型餐馆" disabled>大型餐馆<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="d2cgtype"id="zxcg" value="中型餐馆" disabled>中型餐馆<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="d2cgtype" id="xxcg" value="小型餐馆" disabled>小型餐馆）<span lang=EN-US><o:p></o:p></span></span>
 												</p>
 												<p class=MsoNormal
 													style='line-height: 11.0pt; mso-line-height-rule: exactly'>
 													<span lang=EN-US style='font-size: 9.0pt'><span
 														style="mso-spacerun: yes">          </span></span><span
-														style='font-size: 9.0pt'><input type="radio" name="cyhj" value="食堂">食堂（<input type="radio" name="st" value="机关食堂">机关食堂<span lang=EN-US><span
-															style="mso-spacerun: yes">    </span></span><input type="radio" name="st" value="学校">学校
+														style='font-size: 9.0pt'><input type="radio" name="d2food" value="食堂" id="div2st" onclick="st()">食堂（<input type="radio" name="d2sttype" value="机关食堂" id="jgst" disabled>机关食堂<span lang=EN-US><span
+															style="mso-spacerun: yes">    </span></span><input type="radio" name="d2sttype" value="学校" id="xxst" disabled>学校
 													</span><span
 														style='font-size: 9.0pt; font-family: 宋体; mso-ascii-font-family: 仿宋_GB2312; mso-bidi-font-family: 宋体'>∕</span><span
 														style='font-size: 9.0pt'>托幼食堂<span lang=EN-US><span
 															style="mso-spacerun: yes">    </span><span
-															style="mso-spacerun: yes">    </span></span><input type="radio" name="st" value="企事业单位食堂">企事业单位食堂<span
+															style="mso-spacerun: yes">    </span></span><input type="radio" name="d2sttype" value="企事业单位食堂" id="qsyst" disabled>企事业单位食堂<span
 														lang=EN-US><span style="mso-spacerun: yes">       
-														</span></span><input type="radio" name="st" value="建筑工地食堂">建筑工地食堂）<span lang=EN-US><o:p></o:p></span></span>
+														</span></span><input type="radio" name="d2sttype" value="建筑工地食堂" id="jzgdst" disabled>建筑工地食堂）<span lang=EN-US><o:p></o:p></span></span>
 												</p>
 												<p class=MsoNormal
 													style='line-height: 11.0pt; mso-line-height-rule: exactly'>
 													<span lang=EN-US style='font-size: 9.0pt'><span
 														style="mso-spacerun: yes">          </span></span><span
-														style='font-size: 9.0pt'><input type="radio" name="cyhj" value="小吃店">小吃店<span lang=EN-US><span
-															style="mso-spacerun: yes">    </span></span><input type="radio" name="cyhj" value="快餐店">快餐店<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span><input type="radio" name="cyhj" value="饮品店">饮品店<span lang=EN-US><span
-															style="mso-spacerun: yes">    </span></span><input type="radio" name="cyhj" value="集体用餐配送单位">集体用餐配送单位<span
+														style='font-size: 9.0pt'><input type="radio" name="d2food" value="小吃店" onclick="cg()">小吃店<span lang=EN-US><span
+															style="mso-spacerun: yes">    </span></span><input type="radio" name="d2food" value="快餐店" onclick="cg()">快餐店<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="d2food" value="饮品店" onclick="cg()">饮品店<span lang=EN-US><span
+															style="mso-spacerun: yes">    </span></span><input type="radio" name="d2food" value="集体用餐配送单位" onclick="cg()">集体用餐配送单位<span
 														lang=EN-US><span style="mso-spacerun: yes"> 
-														</span></span><input type="radio" name="cyhj" value="中央厨房">中央厨房<span lang=EN-US><span
-															style="mso-spacerun: yes">      </span></span><input type="radio" name="cyhj" value="其他">其他（<input id="cyhjother" type="text" class="miniinputStyle">）<span lang=EN-US><o:p></o:p></span></span>
+														</span></span><input type="radio" name="d2food" value="中央厨房" onclick="cg()">中央厨房<span lang=EN-US><span
+															style="mso-spacerun: yes">      </span></span><input type="radio" name="d2food" value="其他" onclick="cg()">其他（<input id="cyhjother" name="d2foodother" type="text" class="miniinputStyle">）<span lang=EN-US><o:p></o:p></span></span>
 												</p>
 											</td>
 										</tr>
@@ -893,14 +963,14 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=323 colspan=12
 												style='width: 322.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span style='font-size: 10.5pt'><input type="radio" name="yply" value="加工">加工</span><span
+													<span style='font-size: 10.5pt'><input type="radio" name="d2samplesource" value="加工">加工</span><span
 														style='font-size: 10.5pt; font-family: 宋体; mso-ascii-font-family: 仿宋_GB2312; mso-bidi-font-family: 宋体'>∕</span><span
 														style='font-size: 10.5pt; mso-hansi-font-family: 宋体; mso-bidi-font-family: 宋体'>自制<span
 														lang=EN-US><span style="mso-spacerun: yes">   
-														</span></span></span><span style='font-size: 10.5pt'><input type="radio" name="yply" value="委托生产">委托生产<span
+														</span></span></span><span style='font-size: 10.5pt'><input type="radio" name="d2samplesource" value="委托生产">委托生产<span
 														lang=EN-US><span style="mso-spacerun: yes">   
-														</span></span><input type="radio" name="yply" value="外购">外购<span lang=EN-US><span style="mso-spacerun: yes">   
-														</span></span><input type="radio" name="yply" value="其他">其他<span lang=EN-US><o:p></o:p></span></span>
+														</span></span><input type="radio" name="d2samplesource" value="外购">外购<span lang=EN-US><span style="mso-spacerun: yes">   
+														</span></span><input type="radio" name="d2samplesource" value="其他">其他<span lang=EN-US><o:p></o:p></span></span>
 												</p>
 											</td>
 										</tr>
@@ -914,11 +984,11 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=323 colspan=12
 												style='width: 322.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span style='font-size: 10.5pt'>□普通食品<span
+													<span style='font-size: 10.5pt'><input type="radio" name="d2sampleattr" value="普通食品">普通食品<span
 														lang=EN-US><span style="mso-spacerun: yes"> 
-														</span></span>□特殊膳食食品<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span>□节令食品<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span>□重大活动保障食品<span
+														</span></span><input type="radio" name="d2sampleattr" value="特殊膳食食品">特殊膳食食品<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="d2sampleattr" value="节令食品">节令食品<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="d2sampleattr" value="重大活动保障食品">重大活动保障食品<span
 														lang=EN-US><o:p></o:p></span></span>
 												</p>
 											</td>
@@ -934,19 +1004,18 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 												style='width: 322.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=center
 													style='text-align: center; line-height: 14.0pt; mso-line-height-rule: exactly'>
-													<span style='font-size: 10.5pt'>□食用农产品<span
+													<span style='font-size: 10.5pt'><input type="radio" name="d2sampletype" value="食用农产品">食用农产品<span
 														lang=EN-US><span style="mso-spacerun: yes"> 
-														</span></span>□工业加工食品<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span>□餐饮加工食品<span
+														</span></span><input type="radio" name="d2sampletype" value="工业加工食品">工业加工食品<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="d2sampletype" value="餐饮加工食品">餐饮加工食品<span
 														lang=EN-US><span style="mso-spacerun: yes"> 
-														</span></span>□食品添加剂<span lang=EN-US><o:p></o:p></span></span>
+														</span></span><input type="radio" name="d2sampletype" value="食品添加剂">食品添加剂<span lang=EN-US><o:p></o:p></span></span>
 												</p>
 												<p class=MsoNormal align=center
 													style='text-align: center; line-height: 14.0pt; mso-line-height-rule: exactly'>
-													<span style='font-size: 10.5pt'>□食品相关产品<span
+													<span style='font-size: 10.5pt'><input type="radio" name="d2sampletype" value="食品相关产品">食品相关产品<span
 														lang=EN-US><span style="mso-spacerun: yes"> 
-														</span></span>□其他（<span lang=EN-US><span
-															style="mso-spacerun: yes">              </span></span>）<span
+														</span></span><input type="radio" name="d2sampletype" value="其他">其他（<input type="text" class="miniinputStyle" id=d2ypother>）<span
 														lang=EN-US><o:p></o:p></span></span>
 												</p>
 											</td>
@@ -961,7 +1030,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=147 colspan=4
 												style='width: 146.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p>&nbsp;</o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="d2ypmc" name="d2samplename" type="text" class="tabmidinputStyle"></o:p></span>
 												</p>
 											</td>
 											<td width=54 colspan=2
@@ -973,7 +1042,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=123 colspan=6
 												style='width: 122.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p>&nbsp;</o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="d2ypsb" type="text" name="d2samplelogo" class="tabmidinputStyle"></o:p></span>
 												</p>
 											</td>
 										</tr>
@@ -981,16 +1050,16 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=141 colspan=6
 												style='width: 141.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span style='font-size: 10.5pt'>□生产</span><span
+													<span style='font-size: 10.5pt'><input type="radio" name="d2sampledatetype" value="生产">生产</span><span
 														style='font-size: 10.5pt; font-family: 宋体; mso-ascii-font-family: 仿宋_GB2312; mso-bidi-font-family: 宋体'>∕</span><span
-														style='font-size: 10.5pt'>□加工</span><span
+														style='font-size: 10.5pt'><input type="radio" name="d2sampledatetype" value="加工">加工</span><span
 														style='font-size: 10.5pt; font-family: 宋体; mso-ascii-font-family: 仿宋_GB2312; mso-bidi-font-family: 宋体'>∕</span><span
-														style='font-size: 10.5pt'>□购进日期<span lang=EN-US><o:p></o:p></span></span>
+														style='font-size: 10.5pt'><input type="radio" name="d2sampledatetype" value="购进日期">购进日期<span lang=EN-US><o:p></o:p></span></span>
 												</p>
 											</td>
 											<td width=147 colspan=4
 												style='width: 146.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt'>
-												<input type="text" id="div2gjtime" readonly />
+												<input type="text" name="d2sampledate" id="div2gjtime" readonly />
 											</td>
 											<td width=54 colspan=2
 												style='width: 53.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
@@ -1001,7 +1070,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=123 colspan=6
 												style='width: 122.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p>&nbsp;</o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input type="text" class="tabmidinputStyle" name="d2samplesize" id="d2ggxh"></o:p></span>
 												</p>
 											</td>
 										</tr>
@@ -1015,7 +1084,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=147 colspan=4
 												style='width: 146.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p>&nbsp;</o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="d2ypph" name="d2sampleno" type="text" class="tabmidinputStyle"></o:p></span>
 												</p>
 											</td>
 											<td width=54 colspan=2
@@ -1027,7 +1096,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=123 colspan=6
 												style='width: 122.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p>&nbsp;</o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="d2bzq" name="d2bzq" type="text" readonly></o:p></span>
 												</p>
 											</td>
 										</tr>
@@ -1044,7 +1113,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=147 colspan=4
 												style='width: 146.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p>&nbsp;</o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="d2jswj" name="d2zxwj" type="text" class="tabmidinputStyle"></o:p></span>
 												</p>
 											</td>
 											<td width=54 colspan=2
@@ -1055,9 +1124,9 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											</td>
 											<td width=123 colspan=6
 												style='width: 122.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
-												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p>&nbsp;</o:p></span>
+												<p class=MsoNormal align=center style='text-align: center'><input id="d2zldj" name="d2qualitylv" type="text" class="tabmidinputStyle">
 												</p>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p></o:p></span>
 											</td>
 										</tr>
 										<tr style='mso-yfti-irow: 13'>
@@ -1071,7 +1140,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=104 colspan=3
 												style='width: 104.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p>&nbsp;</o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="d2scxkz" name="d2scxkcode" type="text" class="tabmidinputStyle"></o:p></span>
 												</p>
 											</td>
 											<td width=43
@@ -1083,7 +1152,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=54 colspan=2
 												style='width: 53.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p>&nbsp;</o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="d2dj" name="d2price" type="text" class="tabminiinputStyle"></o:p></span>
 												</p>
 											</td>
 											<td width=52 colspan=4
@@ -1095,7 +1164,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=71 colspan=2
 												style='width: 70.9pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span style='font-size: 10.5pt'>□是 □否<span
+													<span style='font-size: 10.5pt'><input type="radio" name="d2export" value="是">是 <input type="radio" name="d2export" value="否">否<span
 														lang=EN-US><o:p></o:p></span></span>
 												</p>
 											</td>
@@ -1113,7 +1182,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=104 colspan=3
 												style='width: 104.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p>&nbsp;</o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input class="tabmidinputStyle" id="d2examedtime" type="text"></o:p></span>
 												</p>
 											</td>
 											<td width=43
@@ -1125,7 +1194,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=54 colspan=2
 												style='width: 53.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p>&nbsp;</o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="d2cys" name="d2examtime" class="tabminiinputStyle" type="text"></o:p></span>
 												</p>
 											</td>
 											<td width=52 colspan=4
@@ -1137,7 +1206,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=71 colspan=2
 												style='width: 70.9pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p>&nbsp;</o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="d2bysl" name="d2backupno" type="text" class="tabmidinputStyle"></o:p></span>
 												</p>
 											</td>
 										</tr>
@@ -1151,7 +1220,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=147 colspan=4
 												style='width: 146.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span style='font-size: 10.5pt'>□固体□半固体□液体□气体<span
+													<span style='font-size: 10.5pt'><input type="radio" name="d2samplext" value="固体">固体<input type="radio" name="d2samplext" value="半固体">半固体<input type="radio" name="d2samplext" value="液体">液体<input type="radio" name="d2samplext" value="气体">气体<span
 														lang=EN-US><o:p></o:p></span></span>
 												</p>
 											</td>
@@ -1164,8 +1233,8 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=123 colspan=6
 												style='width: 122.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span style='font-size: 10.5pt'>□散装<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span>□预包装<span lang=EN-US><o:p></o:p></span></span>
+													<span style='font-size: 10.5pt'><input type="radio" name="d2samplepacktyp" value="散装">散装<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="d2samplepacktyp" value="预包装">预包装<span lang=EN-US><o:p></o:p></span></span>
 												</p>
 											</td>
 										</tr>
@@ -1193,7 +1262,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 												style='width: 322.8pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 19.85pt; mso-height-rule: exactly'>
 												<p class=MsoNormal align=center
 													style='text-align: center; line-height: 14.0pt; mso-line-height-rule: exactly'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p>&nbsp;</o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="d2sczmc" name="d2productor" type="text" class="tabinputStyle"></o:p></span>
 												</p>
 											</td>
 										</tr>
@@ -1211,7 +1280,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 												style='width: 322.8pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 19.85pt; mso-height-rule: exactly'>
 												<p class=MsoNormal align=center
 													style='text-align: center; line-height: 14.0pt; mso-line-height-rule: exactly'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p>&nbsp;</o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="d2sczdiz" type="text" name="d2productoraddr" class="tabinputStyle"></o:p></span>
 												</p>
 											</td>
 										</tr>
@@ -1229,7 +1298,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 												style='width: 104.3pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 19.85pt; mso-height-rule: exactly'>
 												<p class=MsoNormal align=center
 													style='text-align: center; line-height: 14.0pt; mso-line-height-rule: exactly'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p>&nbsp;</o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="d2sclxr" name="d2productorcontact" type="text" class="tabmidinputStyle"></o:p></span>
 												</p>
 											</td>
 											<td width=96 colspan=3
@@ -1243,7 +1312,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 												style='width: 122.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm; height: 19.85pt; mso-height-rule: exactly'>
 												<p class=MsoNormal align=center
 													style='text-align: center; line-height: 14.0pt; mso-line-height-rule: exactly'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p>&nbsp;</o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="d2lxdh" type="text" name="d2procell" class="tabmidinputStyle"></o:p></span>
 												</p>
 											</td>
 										</tr>
@@ -1264,17 +1333,17 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 												style='width: 245.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm; height: 19.85pt; mso-height-rule: exactly'>
 												<p class=MsoNormal align=center
 													style='text-align: center; line-height: 16.0pt; mso-line-height-rule: exactly'>
-													<span style='font-size: 10.5pt'>□常温<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span>□冷藏<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span>□冷冻<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span>□避光<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span>□密闭<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span>□其他<span lang=EN-US><o:p></o:p></span></span>
+													<span style='font-size: 10.5pt'><input type="radio" name="d2samplestorage" value="常温">常温<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="d2samplestorage" value="冷藏">冷藏<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="d2samplestorage" value="冷冻">冷冻<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="d2samplestorage" value="避光">避光<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="d2samplestorage" value="密闭">密闭<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="d2samplestorage" value="其他">其他<span lang=EN-US><o:p></o:p></span></span>
 												</p>
 												<p class=MsoNormal align=center
 													style='text-align: center; line-height: 16.0pt; mso-line-height-rule: exactly'>
 													<span style='font-size: 10.5pt'>温度<span lang=EN-US><span
-															style="mso-spacerun: yes">       </span></span>（℃）<span
+															style="mso-spacerun: yes"><input type="text" id="d2storagetem" class="tabminiinputStyle"></span></span>（℃）<span
 														lang=EN-US><o:p></o:p></span></span>
 												</p>
 											</td>
@@ -1291,7 +1360,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 												<p class=MsoNormal align=center
 													style='text-align: center; line-height: 14.0pt; mso-line-height-rule: exactly'>
 													<span lang=EN-US style='font-size: 10.5pt'><o:p>
-															<input type="text" id="div2yptime" readonly>
+															<input type="text" name="d2deadline" id="div2yptime" readonly>
 														</o:p></span>
 												</p>
 											</td>
@@ -1310,7 +1379,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 												style='width: 122.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm; height: 19.85pt; mso-height-rule: exactly'>
 												<p class=MsoNormal align=center
 													style='text-align: center; line-height: 14.0pt; mso-line-height-rule: exactly'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p>&nbsp;</o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="d2jsypdz" name="d2sampledist" type="text" class="tabinputStyle"></o:p></span>
 												</p>
 											</td>
 										</tr>
@@ -1329,11 +1398,11 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=245 colspan=9
 												style='width: 245.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span style='font-size: 10.5pt'>□玻璃瓶<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span>□塑料瓶<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span>□塑料袋<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span>□无菌袋<span lang=EN-US><span
-															style="mso-spacerun: yes">  </span></span>□其他<span lang=EN-US><o:p></o:p></span></span>
+													<span style='font-size: 10.5pt'><input type="radio" name="d2samplepack" value="玻璃瓶">玻璃瓶<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="d2samplepack" value="塑料瓶">塑料瓶<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="d2samplepack" value="塑料袋">塑料袋<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="d2samplepack" value="无菌袋">无菌袋<span lang=EN-US><span
+															style="mso-spacerun: yes">  </span></span><input type="radio" name="d2samplepack" value="其他">其他<span lang=EN-US><o:p></o:p></span></span>
 												</p>
 											</td>
 											<td width=96 colspan=3
@@ -1345,7 +1414,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=123 colspan=6
 												style='width: 122.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span style='font-size: 10.5pt'>□无菌抽样□非无菌抽样<span
+													<span style='font-size: 10.5pt'><input type="radio" name="d2samplemethod" value="无菌抽样">无菌抽样<input type="radio" name="d2samplemethod" value="非无菌抽样">非无菌抽样<span
 														lang=EN-US><o:p></o:p></span></span>
 												</p>
 											</td>
@@ -1369,7 +1438,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=192 colspan=8
 												style='width: 192.05pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p>&nbsp;</o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="d2cydwmc" name="d2examdwname" type="text" class="tabinputStyle"></o:p></span>
 												</p>
 											</td>
 											<td width=43
@@ -1381,7 +1450,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=176 colspan=8
 												style='width: 176.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p>&nbsp;</o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input type="text" id="d2cydwdz" name="d2examaddr" class="tabinputStyle"></o:p></span>
 												</p>
 											</td>
 										</tr>
@@ -1395,7 +1464,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=55
 												style='width: 54.75pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p>&nbsp;</o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="d2cydwlxr" name="d2examcontactor" type="text" class="tabmidinputStyle"></o:p></span>
 												</p>
 											</td>
 											<td width=40 colspan=5
@@ -1407,7 +1476,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=98 colspan=2
 												style='width: 97.55pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p>&nbsp;</o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="d2cydwdh" name="d2examtele" type="text" class="tabmidinputStyle"></o:p></span>
 												</p>
 											</td>
 											<td width=43
@@ -1419,7 +1488,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=76 colspan=4
 												style='width: 76.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p>&nbsp;</o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="d2cydwcz" name="d2examfax" type="text" class="tabmidinputStyle"></o:p></span>
 												</p>
 											</td>
 											<td width=39 colspan=3
@@ -1431,7 +1500,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=61
 												style='width: 60.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p>&nbsp;</o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="d2cydwyb" name="d2exammail" type="text" class="tabmidinputStyle"></o:p></span>
 												</p>
 											</td>
 										</tr>
@@ -1445,7 +1514,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<td width=464 colspan=18
 												style='width: 463.95pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 0cm 0cm 0cm; height: 23.9pt'>
 												<p class=MsoNormal align=center style='text-align: center'>
-													<span lang=EN-US style='font-size: 10.5pt'><o:p>&nbsp;</o:p></span>
+													<span lang=EN-US style='font-size: 10.5pt'><o:p><input id="d2cydwbz" name="d2remarks" type="text" class="tablonginputStyle"></o:p></span>
 												</p>
 											</td>
 										</tr>
@@ -1455,9 +1524,9 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 												<p class=MsoNormal
 													style='line-height: 16.0pt; mso-line-height-rule: exactly'>
 													<b style='mso-bidi-font-weight: normal'><span
-														style='font-size: 9.0pt'>被抽样单位对抽样程序、过程、封样状态及上述内容意见：□无异议<span
+														style='font-size: 9.0pt'>被抽样单位对抽样程序、过程、封样状态及上述内容意见：<input type="radio" name="d2cyview" value="无异议" >无异议<span
 															lang=EN-US><span style="mso-spacerun: yes"> 
-															</span></span>□有异议<span lang=EN-US><o:p></o:p></span></span></b>
+															</span></span><input type="radio" name="d2cyview" value="有异议" >有异议<span lang=EN-US><o:p></o:p></span></span></b>
 												</p>
 												<p class=MsoNormal>
 													<span style='font-size: 9.0pt'>被抽样单位签名（盖章）：<span
@@ -1475,9 +1544,9 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 												<p class=MsoNormal
 													style='line-height: 15.0pt; mso-line-height-rule: exactly'>
 													<b style='mso-bidi-font-weight: normal'><span
-														style='font-size: 9.0pt'>生产者对抽样程序、过程、封样状态及上述内容意见：□无异议<span
+														style='font-size: 9.0pt'>生产者对抽样程序、过程、封样状态及上述内容意见：<input type="radio" name="d2scview" value="无异议" >无异议<span
 															lang=EN-US><span style="mso-spacerun: yes"> 
-															</span></span>□有异议<span lang=EN-US><o:p></o:p></span></span></b>
+															</span></span><input type="radio" name="d2scview" value="有异议" >有异议<span lang=EN-US><o:p></o:p></span></span></b>
 												</p>
 												<p class=MsoNormal>
 													<span style='font-size: 9.0pt'>生产者签名（盖章）：<span
@@ -1735,6 +1804,8 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 										style='font-size: 10.5pt; font-family: "Times New Roman"'><o:p></o:p></span>
 								</p>
 							</div>
+							<button type="submit" id="div1sub" >提交</button>
+							</form>
 							<div id="div3" style="display: none">
 								<p class=MsoNormal align=center style='text-align: center'>
 									<span style='font-size: 16.0pt; font-family: 方正小标宋简体'>食品安全抽样检验工作质量及工作纪律反馈单<span

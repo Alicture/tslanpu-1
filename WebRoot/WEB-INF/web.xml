@@ -336,4 +336,24 @@
     <servlet-name>foodAjaxServlet</servlet-name>
     <url-pattern>/foodAjaxServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>foodexam</display-name>
+    <servlet-name>foodexam</servlet-name>
+    <servlet-class>cn.tslanpu.test.exam.food.servlet.foodexam</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>foodexam</servlet-name>
+    <url-pattern>/foodexam</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FoodExamServlet</display-name>
+    <servlet-name>FoodExamServlet</servlet-name>
+    <servlet-class>cn.tslanpu.test.exam.food.servlet.FoodExamServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FoodExamServlet</servlet-name>
+    <url-pattern>/FoodExamServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
