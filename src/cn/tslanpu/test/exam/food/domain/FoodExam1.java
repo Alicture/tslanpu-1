@@ -250,6 +250,232 @@ public class FoodExam1
 	 * d2samplepack
 	 */
 	private String d2samplepack;
+	private int d3no;
+	/**
+	 * d3examtime
+	 */
+	private String d3examtime;
+	/**
+	 * d3examdwname
+	 */
+	private String d3examdwname;
+	/**
+	 * d3exampeplname
+	 */
+	private String d3exampeplname;
+	/**
+	 * d3idcard
+	 */
+	private String d3idcard;
+	/**
+	 * d3buysample
+	 */
+	private String d3buysample;
+	/**
+	 * d3sealsample
+	 */
+	private String d3sealsample;
+	/**
+	 * d3storesample
+	 */
+	private String d3storesample;
+	/**
+	 * d3fair
+	 */
+	private String d3fair;
+	/**
+	 * d3remark
+	 */
+	private String d3remark;
+	/**
+	 * d3examtele
+	 */
+	private String d3examtele;
+	/**
+	 * d3examemail
+	 */
+	private String d3examemail;
+	/**
+	 * d3examfax
+	 */
+	private String d3examfax;
+	/**
+	 * d3dwname
+	 */
+	private String d3dwname;
+	/**
+	 * d3dwdzybdz
+	 */
+	private String d3dwdzybdz;
+	/**
+	 * d3dwtele
+	 */
+	private String d3dwtele;
+	/**
+	 * d3dwdz
+	 */
+	private String d3dwdz;
+	/**
+	 * d3tbtime
+	 */
+	private String d3tbtime;
+	/**
+	 * d3legalsign
+	 */
+	private String d3legalsign;
+	
+	public int getD3no()
+	{
+		return d3no;
+	}
+	public void setD3no(int d3no)
+	{
+		this.d3no = d3no;
+	}
+	public String getD3examtime()
+	{
+		return d3examtime;
+	}
+	public void setD3examtime(String d3examtime)
+	{
+		this.d3examtime = d3examtime;
+	}
+	public String getD3examdwname()
+	{
+		return d3examdwname;
+	}
+	public void setD3examdwname(String d3examdwname)
+	{
+		this.d3examdwname = d3examdwname;
+	}
+	public String getD3exampeplname()
+	{
+		return d3exampeplname;
+	}
+	public void setD3exampeplname(String d3exampeplname)
+	{
+		this.d3exampeplname = d3exampeplname;
+	}
+	public String getD3idcard()
+	{
+		return d3idcard;
+	}
+	public void setD3idcard(String d3idcard)
+	{
+		this.d3idcard = d3idcard;
+	}
+	public String getD3buysample()
+	{
+		return d3buysample;
+	}
+	public void setD3buysample(String d3buysample)
+	{
+		this.d3buysample = d3buysample;
+	}
+	public String getD3sealsample()
+	{
+		return d3sealsample;
+	}
+	public void setD3sealsample(String d3sealsample)
+	{
+		this.d3sealsample = d3sealsample;
+	}
+	public String getD3storesample()
+	{
+		return d3storesample;
+	}
+	public void setD3storesample(String d3storesample)
+	{
+		this.d3storesample = d3storesample;
+	}
+	public String getD3fair()
+	{
+		return d3fair;
+	}
+	public void setD3fair(String d3fair)
+	{
+		this.d3fair = d3fair;
+	}
+	public String getD3remark()
+	{
+		return d3remark;
+	}
+	public void setD3remark(String d3remark)
+	{
+		this.d3remark = d3remark;
+	}
+	public String getD3examtele()
+	{
+		return d3examtele;
+	}
+	public void setD3examtele(String d3examtele)
+	{
+		this.d3examtele = d3examtele;
+	}
+	public String getD3examemail()
+	{
+		return d3examemail;
+	}
+	public void setD3examemail(String d3examemail)
+	{
+		this.d3examemail = d3examemail;
+	}
+	public String getD3examfax()
+	{
+		return d3examfax;
+	}
+	public void setD3examfax(String d3examfax)
+	{
+		this.d3examfax = d3examfax;
+	}
+	public String getD3dwname()
+	{
+		return d3dwname;
+	}
+	public void setD3dwname(String d3dwname)
+	{
+		this.d3dwname = d3dwname;
+	}
+	public String getD3dwdzybdz()
+	{
+		return d3dwdzybdz;
+	}
+	public void setD3dwdzybdz(String d3dwdzybdz)
+	{
+		this.d3dwdzybdz = d3dwdzybdz;
+	}
+	public String getD3dwtele()
+	{
+		return d3dwtele;
+	}
+	public void setD3dwtele(String d3dwtele)
+	{
+		this.d3dwtele = d3dwtele;
+	}
+	public String getD3dwdz()
+	{
+		return d3dwdz;
+	}
+	public void setD3dwdz(String d3dwdz)
+	{
+		this.d3dwdz = d3dwdz;
+	}
+	public String getD3tbtime()
+	{
+		return d3tbtime;
+	}
+	public void setD3tbtime(String d3tbtime)
+	{
+		this.d3tbtime = d3tbtime;
+	}
+	public String getD3legalsign()
+	{
+		return d3legalsign;
+	}
+	public void setD3legalsign(String d3legalsign)
+	{
+		this.d3legalsign = d3legalsign;
+	}
 	public String getExamtype()
 	{
 		return examtype;

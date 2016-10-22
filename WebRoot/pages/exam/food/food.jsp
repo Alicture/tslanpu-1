@@ -141,7 +141,8 @@ $(function(){
 			$("#div2yptime").datetimepicker();
 			$("#div3cytime").datetimepicker();	
 			$("#d7sytime").datetimepicker();
-			$("#d2bzq").datetimepicker();		
+			$("#d2bzq").datetimepicker();
+			$("#d3tbtime").datetimepicker();		
 		});
 		
 		
@@ -322,6 +323,7 @@ $(function(){
     	  				$("#bcylxr").attr("value",qydelegate);
     	  				$("#bcydwtele").attr("value",qyphone);
     	  				$("#ems").attr("value",ems);
+    	  				$("#d3examtele").attr("value",qyphone);
     	  				
    
     	  			}
@@ -1804,8 +1806,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 										style='font-size: 10.5pt; font-family: "Times New Roman"'><o:p></o:p></span>
 								</p>
 							</div>
-							<button type="submit" id="div1sub" >提交</button>
-							</form>
+							
 							<div id="div3" style="display: none">
 								<p class=MsoNormal align=center style='text-align: center'>
 									<span style='font-size: 16.0pt; font-family: 方正小标宋简体'>食品安全抽样检验工作质量及工作纪律反馈单<span
@@ -1816,7 +1817,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 									<span lang=EN-US><o:p>&nbsp;</o:p></span>
 								</p>
 
-								<p class=MsoNormal>
+								<p class=MsoNormal style='text-align:right'>
 									<span lang=EN-US><span style="mso-spacerun: yes">                                                   
 									</span><span style="mso-spacerun: yes">   </span><span
 										style="mso-spacerun: yes">  </span></span><span lang=EN-US
@@ -1825,13 +1826,13 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 										style='font-size: 7.5pt; font-family: "Monotype Corsiva"'>O</span></u><span
 										lang=EN-US
 										style='font-size: 7.5pt; font-family: "Monotype Corsiva"'>
-									</span><u><span lang=EN-US style='mso-bidi-font-size: 10.5pt'><span
-											style="mso-spacerun: yes">                   </span> <o:p></o:p></span></u>
+									</span><span lang=EN-US style='mso-bidi-font-size: 10.5pt'><span
+											style="mso-spacerun: yes"><input class="miniinputStyle" name="d3no"></span> <o:p></o:p></span>
 								</p>
 
 								<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
 									width=468
-									style='width: 468.0pt; margin-left: 20pt; border-collapse: collapse; border: none; mso-border-alt: solid windowtext .5pt; mso-yfti-tbllook: 480; mso-padding-alt: 0cm 5.4pt 0cm 5.4pt'>
+									style='width: 468.0pt; margin: auto; border-collapse: collapse; border: none; mso-border-alt: solid windowtext .5pt; mso-yfti-tbllook: 480; mso-padding-alt: 0cm 5.4pt 0cm 5.4pt; text-align:left'>
 									<tr
 										style='mso-yfti-irow: 0; mso-yfti-firstrow: yes; height: 38.55pt'>
 										<td width=90
@@ -1845,7 +1846,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											style='width: 189.0pt; border: solid windowtext 1.0pt; border-left: none; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 38.55pt'>
 											<p class=MsoNormal align=center style='text-align: center'>
 												<span lang=EN-US
-													style='font-size: 12.0pt; font-family: 仿宋_GB2312'><o:p>&nbsp;</o:p></span>
+													style='font-size: 12.0pt; font-family: 仿宋_GB2312'><o:p><input name="d3examname" class="tabmidinputStyle"></o:p></span>
 											</p>
 										</td>
 										<td width=62
@@ -1857,7 +1858,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 										</td>
 										<td width=127
 											style='width: 126.85pt; border: solid windowtext 1.0pt; border-left: none; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 38.55pt'>
-											<input type="text" id="div3cytime" readonly />
+											<input type="text" name="d3examtime" id="div3cytime" readonly />
 										</td>
 									</tr>
 									<tr style='mso-yfti-irow: 1; height: 46.1pt'>
@@ -1872,7 +1873,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											style='width: 378.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 46.1pt'>
 											<p class=MsoNormal align=center style='text-align: center'>
 												<span lang=EN-US
-													style='font-size: 12.0pt; font-family: 仿宋_GB2312'><o:p>&nbsp;</o:p></span>
+													style='font-size: 12.0pt; font-family: 仿宋_GB2312'><o:p><input class="tabinputStyle" name="d3examdwname"></o:p></span>
 											</p>
 										</td>
 									</tr>
@@ -1888,7 +1889,7 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											style='width: 378.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 38.9pt'>
 											<p class=MsoNormal align=center style='text-align: center'>
 												<span lang=EN-US
-													style='font-size: 12.0pt; font-family: 仿宋_GB2312'><o:p>&nbsp;</o:p></span>
+													style='font-size: 12.0pt; font-family: 仿宋_GB2312'><o:p><input class="tabinputStyle" name="d3exampeplname"></o:p></span>
 											</p>
 										</td>
 									</tr>
@@ -1905,39 +1906,39 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<p class=MsoNormal>
 												<span lang=EN-US
 													style='font-size: 12.0pt; font-family: 仿宋_GB2312'>1.</span><span
-													style='font-size: 12.0pt; font-family: 仿宋_GB2312'>（□是<span
+													style='font-size: 12.0pt; font-family: 仿宋_GB2312'>（<input type="radio" name="d3idcard" value="是">是<span
 													lang=EN-US><span style="mso-spacerun: yes"> 
-													</span></span>□否）抽样人员抽样前，是否出示有效工作证？<span lang=EN-US><o:p></o:p></span></span>
+													</span></span><input type="radio" name="d3idcard" value="否">否）抽样人员抽样前，是否出示有效工作证？<span lang=EN-US><o:p></o:p></span></span>
 											</p>
 											<p class=MsoNormal>
 												<span lang=EN-US
 													style='font-size: 12.0pt; font-family: 仿宋_GB2312'>2.</span><span
-													style='font-size: 12.0pt; font-family: 仿宋_GB2312'>（□是<span
+													style='font-size: 12.0pt; font-family: 仿宋_GB2312'>（<input type="radio" name="d3buysample" value="是">是<span
 													lang=EN-US><span style="mso-spacerun: yes"> 
-													</span></span>□否）抽样人员是否向你单位说明样品通过购买取得（或送达《食品安全抽样检验样品购置费用告知书》）？<span
+													</span></span><input type="radio" name="d3buysample" value="否">否）抽样人员是否向你单位说明样品通过购买取得（或送达《食品安全抽样检验样品购置费用告知书》）？<span
 													lang=EN-US><o:p></o:p></span></span>
 											</p>
 											<p class=MsoNormal>
 												<span lang=EN-US
 													style='font-size: 12.0pt; font-family: 仿宋_GB2312'>3.</span><span
-													style='font-size: 12.0pt; font-family: 仿宋_GB2312'>（□是
-													<span style="mso-spacerun: yes"> </span>□否）抽样人员是否对所抽取的样品全部当场进行封样？是否对样品采取了防拆封措施？<span
+													style='font-size: 12.0pt; font-family: 仿宋_GB2312'>（<input type="radio" name="d3sealsample" value="是">是
+													<span style="mso-spacerun: yes"> </span><input type="radio" name="d3sealsample" value="否">否）抽样人员是否对所抽取的样品全部当场进行封样？是否对样品采取了防拆封措施？<span
 													lang=EN-US><o:p></o:p></span>
 												</span>
 											</p>
 											<p class=MsoNormal>
 												<span lang=EN-US
 													style='font-size: 12.0pt; font-family: 仿宋_GB2312'>4.</span><span
-													style='font-size: 12.0pt; font-family: 仿宋_GB2312'>（□是<span
+													style='font-size: 12.0pt; font-family: 仿宋_GB2312'>（<input type="radio" name="d3storesample" value="是">是<span
 													lang=EN-US><span style="mso-spacerun: yes"> 
-													</span></span>□否）抽样人员是否按产品标签中标注的保存条件及其他特殊要求对所抽取的样品进行保存？<span lang=EN-US><o:p></o:p></span></span>
+													</span></span><input type="radio" name="d3storesample" value="否">否）抽样人员是否按产品标签中标注的保存条件及其他特殊要求对所抽取的样品进行保存？<span lang=EN-US><o:p></o:p></span></span>
 											</p>
 											<p class=MsoNormal>
 												<span lang=EN-US
 													style='font-size: 12.0pt; font-family: 仿宋_GB2312'>5.</span><span
-													style='font-size: 12.0pt; font-family: 仿宋_GB2312'>（□是<span
+													style='font-size: 12.0pt; font-family: 仿宋_GB2312'>（<input type="radio" name="d3fair" value="是">是<span
 													lang=EN-US><span style="mso-spacerun: yes"> 
-													</span></span>□否）抽样人员在抽样过程中是否廉洁公正？<span lang=EN-US><o:p></o:p></span></span>
+													</span></span><input type="radio" name="d3fair" value="否">否）抽样人员在抽样过程中是否廉洁公正？<span lang=EN-US><o:p></o:p></span></span>
 											</p>
 											<p class=MsoNormal>
 												<b style='mso-bidi-font-weight: normal'><span
@@ -1972,7 +1973,8 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											style='width: 378.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 100.4pt'>
 											<p class=MsoNormal>
 												<span lang=EN-US
-													style='font-size: 12.0pt; font-family: 仿宋_GB2312'><o:p>&nbsp;</o:p></span>
+													style='font-size: 12.0pt; font-family: 仿宋_GB2312'><o:p>
+													<input name="d3remark" class="dzinputStyle"></o:p></span>
 											</p>
 										</td>
 									</tr>
@@ -1990,12 +1992,12 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<p class=MsoNormal>
 												<span style='font-size: 12.0pt; font-family: 仿宋_GB2312'>电话：<span
 													lang=EN-US><span style="mso-spacerun: yes">      
-													</span>-<span style="mso-spacerun: yes">                </span>E-Mail:<o:p></o:p></span></span>
+													</span><input id="d3examtele" class="tabmidinputStyle" name="d3examtele"><span style="mso-spacerun: yes">                </span>E-Mail:<o:p><input id="d3examemail" name="d3examemail" class="tabmidinputStyle"></o:p></span></span>
 											</p>
 											<p class=MsoNormal>
 												<span style='font-size: 12.0pt; font-family: 仿宋_GB2312'>传真：<span
 													lang=EN-US><span style="mso-spacerun: yes">      
-													</span>-<span style="mso-spacerun: yes">       </span> <o:p></o:p></span></span>
+													</span><input id="d3examfax" name="d3examfax" class="tabmidinputStyle"><span style="mso-spacerun: yes">       </span> <o:p></o:p></span></span>
 											</p>
 											<p class=MsoNormal>
 												<span lang=EN-US
@@ -2004,18 +2006,14 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 											<p class=MsoNormal
 												style='text-indent: 114.0pt; mso-char-indent-count: 9.5'>
 												<span style='font-size: 12.0pt; font-family: 仿宋_GB2312'>法定代表人或负责人签字：<span
-													lang=EN-US><o:p></o:p></span></span>
+													lang=EN-US><o:p><input class="tabmidinputStyle" name="d3legalsign"></o:p></span></span>
 											</p>
 											<p class=MsoNormal
 												style='text-indent: 114.0pt; mso-char-indent-count: 9.5'>
 												<span lang=EN-US
 													style='font-size: 12.0pt; font-family: 仿宋_GB2312'><span
 													style="mso-spacerun: yes">              </span></span><span
-													style='font-size: 12.0pt; font-family: 仿宋_GB2312'>填表日期：<span
-													lang=EN-US><span style="mso-spacerun: yes">       
-													</span></span>年<span lang=EN-US><span style="mso-spacerun: yes">  
-													</span></span>月<span lang=EN-US><span style="mso-spacerun: yes"> 
-													</span></span>日<span lang=EN-US><o:p></o:p></span></span>
+													style='font-size: 12.0pt; font-family: 仿宋_GB2312'>填表日期：<input type="text" name="d3tbtime" id="d3tbtime" readonly /></span>
 											</p>
 											<p class=MsoNormal
 												style='text-indent: 114.0pt; mso-char-indent-count: 9.5'>
@@ -2029,37 +2027,29 @@ style='font-size:22.0pt'><span style="mso-spacerun:yes">            
 									</tr>
 								</table>
 
-								<p class=MsoNormal
-									style='margin-top: 0cm; margin-right: -7.65pt; margin-bottom: 0cm; margin-left: -18.05pt; margin-bottom: .0001pt; mso-para-margin-top: 0cm; mso-para-margin-right: -.73gd; mso-para-margin-bottom: 0cm; mso-para-margin-left: -1.72gd; mso-para-margin-bottom: .0001pt; text-indent: .05pt'>
-									<span style='font-size: 12.0pt; font-family: 仿宋_GB2312'>说明：如对抽样工作有异议，请被抽样单位将本表填写好并加盖公章后，按以下联系方式寄送或传真本表。<span
+								<p class=MsoNormal style='text-align:left'>									<span style='font-size: 12.0pt; font-family: 仿宋_GB2312'>说明：如对抽样工作有异议，请被抽样单位将本表填写好并加盖公章后，按以下联系方式寄送或传真本表。<span
 										lang=EN-US><o:p></o:p></span></span>
 								</p>
 
-								<p class=MsoNormal
-									style='margin-top: 0cm; margin-right: -7.65pt; margin-bottom: 0cm; margin-left: -18.05pt; margin-bottom: .0001pt; mso-para-margin-top: 0cm; mso-para-margin-right: -.73gd; mso-para-margin-bottom: 0cm; mso-para-margin-left: -1.72gd; mso-para-margin-bottom: .0001pt; text-indent: .05pt'>
-									<span style='font-size: 12.0pt; font-family: 仿宋_GB2312'>反馈受理单位：<span
+								<p class=MsoNormal style='text-align:left'>									<span style='font-size: 12.0pt; font-family: 仿宋_GB2312'>反馈受理单位：<input class="tabinputStyle" name="d3dwname"><span
 										lang=EN-US><o:p></o:p></span></span>
 								</p>
 
-								<p class=MsoNormal
-									style='margin-top: 0cm; margin-right: -7.65pt; margin-bottom: 0cm; margin-left: -18.05pt; margin-bottom: .0001pt; mso-para-margin-top: 0cm; mso-para-margin-right: -.73gd; mso-para-margin-bottom: 0cm; mso-para-margin-left: -1.72gd; mso-para-margin-bottom: .0001pt; text-indent: .05pt'>
-									<span style='font-size: 12.0pt; font-family: 仿宋_GB2312'>通讯地址及邮编：<span
+								<p class=MsoNormal style='text-align:left'>									<span style='font-size: 12.0pt; font-family: 仿宋_GB2312'>通讯地址及邮编：<input class="tabinputStyle" name="d3dwdzybdz"><span
 										lang=EN-US><o:p></o:p></span></span>
 								</p>
 
-								<p class=MsoNormal
-									style='margin-top: 0cm; margin-right: -7.65pt; margin-bottom: 0cm; margin-left: -18.05pt; margin-bottom: .0001pt; mso-para-margin-top: 0cm; mso-para-margin-right: -.73gd; mso-para-margin-bottom: 0cm; mso-para-margin-left: -1.72gd; mso-para-margin-bottom: .0001pt; text-indent: .05pt'>
-									<span style='font-size: 12.0pt; font-family: 仿宋_GB2312'>联系电话：<span
+								<p class=MsoNormal style='text-align:left'>									<span style='font-size: 12.0pt; font-family: 仿宋_GB2312'>联系电话：<input class="tabinputStyle" name="d3dwtele"><span
 										lang=EN-US><o:p></o:p></span></span>
 								</p>
 
-								<p class=MsoNormal
-									style='margin-top: 0cm; margin-right: -7.65pt; margin-bottom: 0cm; margin-left: -18.05pt; margin-bottom: .0001pt; mso-para-margin-top: 0cm; mso-para-margin-right: -.73gd; mso-para-margin-bottom: 0cm; mso-para-margin-left: -1.72gd; mso-para-margin-bottom: .0001pt; text-indent: .05pt'>
-									<span style='font-size: 12.0pt; font-family: 仿宋_GB2312'>传<span
-										lang=EN-US><span style="mso-spacerun: yes">    </span></span>真：<span
+								<p class=MsoNormal style='text-align:left'>									<span style='font-size: 12.0pt; font-family: 仿宋_GB2312'>传<span
+										lang=EN-US><span style="mso-spacerun: yes">    </span></span>真：<input class="tabinputStyle" name="d3dwfax"><span
 										lang=EN-US><o:p></o:p></span></span>
 								</p>
 							</div>
+							<button type="submit" id="div1sub" >提交</button>
+							</form>
 							<div id="div4" style="display: none">
 								<p class=MsoNormal align=center
 									style='text-align: center; text-indent: 9.0pt; mso-char-indent-count: .5; line-height: 30.0pt; mso-line-height-rule: exactly'>

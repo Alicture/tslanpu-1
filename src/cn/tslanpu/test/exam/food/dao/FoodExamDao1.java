@@ -20,8 +20,9 @@ public class FoodExamDao1
 				+ "d2samplesize,d2sampleno,d2bzq,d2zxwj,d2qualitylv,d2scxkcode,d2price,d2export,d2examedtime,d2backupno,d2samplext,"
 				+ "d2samplepacktyp,d2productor,d2productoraddr,d2productorcontact,d2procell,d2samplestorage,d2storagetem,d2deadline,d2sampledist,"
 				+ "d2samplemethod,d2examdwname,d2examaddr,d2examcontactor,d2examtele,d2examfax,d2exammail,d2remarks,d2cyview,d2scview,"
-				+ "d2sampledate,d2samplepack)"
-	+"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "d2sampledate,d2samplepack,d3no,d3examtime,d3examdwname,d3exampeplname,d3idcard,d3buysample,d3sealsample,d3storesample,d3fair,"
+				+ "d3remark,d3examtele,d3examemail,d3examfax,d3dwname,d3dwdzybdz,d3dwtele,d3dwdz,d3tbtime,d3legalsign)"
+	+"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		Object[] params={foodex1.getNo(),foodex1.getExamedfood(),foodex1.getExamdw(),foodex1.getExampepl(),foodex1.getExamdate(),
 				foodex1.getExamedqy(),foodex1.getExamtype(),foodex1.getD2no(),foodex1.getD2cydnum(),foodex1.getD2missionsource(),foodex1.getD2missiontype(),
 				foodex1.getD2bcydwname(),foodex1.getD2areatype(),foodex1.getD2dwadress(),foodex1.getD2legaldelegate(),foodex1.getD2yearsail(),foodex1.getD2zzcode(),
@@ -31,7 +32,9 @@ public class FoodExamDao1
 				foodex1.getD2bzq(),foodex1.getD2zxwj(),foodex1.getD2qualitylv(),foodex1.getD2scxkcode(),foodex1.getD2price(),foodex1.getD2export(),foodex1.getD2examedtime(),foodex1.getD2backupno(),foodex1.getD2samplext(),
 				foodex1.getD2samplepacktyp(),foodex1.getD2productor(),foodex1.getD2productoraddr(),foodex1.getD2productorcontact(),foodex1.getD2procell(),foodex1.getD2samplestorage(),
 				foodex1.getD2storagetem(),foodex1.getD2deadline(),foodex1.getD2sampledist(),foodex1.getD2samplemethod(),foodex1.getD2examdwname(),foodex1.getD2examaddr(),foodex1.getD2examcontactor(),foodex1.getD2examtele(),
-				foodex1.getD2examfax(),foodex1.getD2exammail(),foodex1.getD2remarks(),foodex1.getD2cyview(),foodex1.getD2scview(),foodex1.getD2sampledate(),foodex1.getD2samplepack()};
+				foodex1.getD2examfax(),foodex1.getD2exammail(),foodex1.getD2remarks(),foodex1.getD2cyview(),foodex1.getD2scview(),foodex1.getD2sampledate(),foodex1.getD2samplepack(),foodex1.getD3no(),foodex1.getD3examtime(),foodex1.getD3examdwname(),
+				foodex1.getD3exampeplname(),foodex1.getD3idcard(),foodex1.getD3buysample(),foodex1.getD3sealsample(),foodex1.getD3storesample(),foodex1.getD3fair(),foodex1.getD3remark(),foodex1.getD3examtele(),foodex1.getD3examemail(),
+				foodex1.getD3examfax(),foodex1.getD3dwname(),foodex1.getD3dwdzybdz(),foodex1.getD3dwtele(),foodex1.getD3dwdz(),foodex1.getD3tbtime(),foodex1.getD3legalsign()};
 		qr.update(sql,params);
 	}
 
